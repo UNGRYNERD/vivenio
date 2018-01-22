@@ -2,11 +2,11 @@
 
 // Automatically injected Bower dependencies via wiredep (never manually edit this block)
 // bower:scss
-@import "../../bower_components/bootstrap/scss/bootstrap.scss";
 // endbower
 @import "../../bower_components/owl.carousel/src/scss/owl.carousel.scss";
 @import "../../bower_components/normalize-css/normalize.css";
 @import "common/global";
+@import "components/slideshow";
 @import "components/buttons";
 @import "components/comments";
 @import "components/forms";

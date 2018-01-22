@@ -1,15 +1,51 @@
-// Search form
-.search-form {
-  @extend .form-inline;
-}
-.search-form label {
-  font-weight: normal;
-  @extend .form-group;
-}
-.search-form .search-field {
-  @extend .form-control;
-}
-.search-form .search-submit {
-  @extend .btn;
-  @extend .btn-secondary;
+.dropdown {
+  max-width: 260px;
+  background: $white;
+  color: $secondary;
+  position: relative;
+  height: auto;
+  cursor: pointer;
+  &__value {
+    height: 47px;
+    line-height: 47px;
+    padding: 0px 57px 0px 20px;
+    display: block;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__options {
+    display: none;
+    padding: 20px;
+    margin: 0px;
+    list-style: none;
+    max-height: 270px;
+    overflow: scroll;
+    li {
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $secondary;
+      }
+    }
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: block;
+    height: 47px;
+    width: 47px;
+    background: url('../images/icon-dropdown.svg') center center no-repeat $secondary;
+  }
+  &.open {
+    .dropdown__options {
+      display: block;
+    }
+  }
 }

@@ -19,15 +19,64 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+        $(window).on('scroll', function(event) {
+          if (window.scrollY>0) {
+            $('body').addClass('scrolled');
+          } else {
+            $('body').removeClass('scrolled');
+          }
+        });
+
+        $('.dropdown').each(function(index, el) {
+          $(el).on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            $(this).toggleClass('open');
+          });
+          $(el).on('click', '.dropdown__options a', function(event) {
+            event.preventDefault();
+            console.log(event.target.innerHTML);
+            $(el).children('.dropdown__value').text($(this).text());
+          });
+        });
       },
       finalize: function() {
-        // JavaScript to be fired on all pages, after page specific JS is fired
+        // JavaScript to be fired on all pages, after pa ge specific JS is fired
       }
     },
     // Home page
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
+        var slides = $('.slides');
+        slides.owlCarousel({
+          items: 1,
+          dots: false,
+          nav: true,
+          loop: true,
+        });
+        slides.on('translate.owl.carousel',function(e){
+          $('.owl-item video').each(function(){
+            $(this).get(0).pause();
+          });
+        });
+        slides.on('translated.owl.carousel',function(e){
+          if ($('.owl-item.active video').length) {
+            $('.owl-item.active video').get(0).play();
+          }
+        });
+
+        function calculateDropdownHeight() {
+          $('.slides .dropdown').each(function(index, el) {
+            var calculatedHeight = $('.slides').height() - $(el).height() - $(el).offset().top - 10;
+            $(el).children('.dropdown__options').css('max-height', calculatedHeight + 'px');
+          });
+        }
+        calculateDropdownHeight();
+        $(window).on('resize', function() {
+          calculateDropdownHeight();
+        });
+
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS

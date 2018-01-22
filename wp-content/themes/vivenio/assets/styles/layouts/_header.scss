@@ -1,0 +1,55 @@
+.header {
+  background-color: transparent;
+  transition: background-color 0.3s linear;
+  padding: 45px 0px 20px 0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  .home & {
+    position: fixed;
+    width: 100%;
+  }
+  .scrolled & {
+    background-color: $primary;
+    .custom-logo-link {
+      display: none;
+      &--alt {
+        display: block;
+      }
+    }
+  }
+  &__wrapper {
+    @extend %container;
+    @extend %flex;
+    align-items: flex-end;
+  }
+  .custom-logo-link {
+    display: block;
+    max-width: 197px;
+    &--alt {
+      display: none;
+    }
+  }
+  &__menu {
+    @extend %flex;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    .menu-item {
+      margin: 0px 10px;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 2;
+      a {
+        color: $white;
+        text-decoration: none;
+        &:hover {
+          color: $secondary;
+        }
+      }
+    }
+  }
+}
+
+

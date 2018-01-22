@@ -1,1 +1,25 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body, input, textarea {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+}
+body,
+html {
+  height: 100%;
+}
 
+
+body {
+  font-family: Poppins;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}

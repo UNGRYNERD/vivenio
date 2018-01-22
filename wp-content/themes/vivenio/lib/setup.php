@@ -23,11 +23,12 @@ function setup() {
   // Enable plugins to manage the document title
   // http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
   add_theme_support('title-tag');
+  add_theme_support('custom-logo');
 
   // Register wp_nav_menu() menus
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
-    'primary_navigation' => __('Primary Navigation', 'sage')
+    'primary_navigation' => __('Menu principal', 'sage')
   ]);
 
   // Enable post thumbnails
@@ -35,6 +36,7 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
+  add_image_size('slide', 1920, 1080, true);
 
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
@@ -95,12 +97,14 @@ function display_sidebar() {
  * Theme assets
  */
 function assets() {
-  wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, null);
+  wp_enqueue_style('vivenio/fonts', '//fonts.googleapis.com/css?family=Poppins:400,500,600', false, null );
+
+  wp_enqueue_style('vivenio/css', Assets\asset_path('styles/main.css'), false, null);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
-
-  wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+  wp_enqueue_script('owl.carousel', Assets\asset_path('scripts/owl.carousel.js'), ['jquery'], null, true);
+  wp_enqueue_script('vivenio/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
