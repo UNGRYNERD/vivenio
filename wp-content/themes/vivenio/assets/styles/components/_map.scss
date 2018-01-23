@@ -1,0 +1,39 @@
+.map-data {
+  display: none;
+}
+.map-info {
+  @extend %flex;
+  img {
+    flex: 0 0 50%;
+  }
+  &__wrap {
+    flex: 0 0 50%;
+    padding: 15px;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.17;
+    letter-spacing: -0.2px;
+    color: $secondary;
+  }
+  &__address {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.2px;
+    text-align: left;
+    color: $secondary;
+  }
+  &__text {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 0.87;
+    letter-spacing: -0.2px;
+    text-align: left;
+    color: $primary;
+  }
+  &__link {
+    display: inline-block;
+  }
+}

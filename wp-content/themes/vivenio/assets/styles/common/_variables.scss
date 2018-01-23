@@ -12,8 +12,10 @@ $width: 1280px;
 $spacer: 30px;
 
 %container {
-  width: $width;
+  max-width: $width+$spacer;
+  width: 100%;
   margin: 0px auto;
+  padding: 0px $spacer/2;
 }
 
 %flex {

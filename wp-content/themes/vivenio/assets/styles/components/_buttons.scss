@@ -1,0 +1,15 @@
+.button {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 0.65;
+  letter-spacing: -0.3px;
+  color: $secondary;
+  border: solid 2px $secondary;
+  padding: 16px 50px;
+  text-decoration: none;
+  &:hover {
+    color: $white;
+    background: $secondary;
+    text-decoration: none;
+  }
+}

@@ -15,11 +15,14 @@ html {
   height: 100%;
 }
 
-
 body {
   font-family: Poppins;
 }
 img {
   max-width: 100%;
   height: auto;
+}
+
+.container {
+  @extend %container;
 }

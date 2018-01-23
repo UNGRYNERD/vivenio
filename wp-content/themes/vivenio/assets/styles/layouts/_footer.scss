@@ -1,0 +1,76 @@
+.prefooter {
+  @extend %container;
+  @extend %flex;
+  align-items: flex-start;
+  padding: 40px 0px;
+  &__text {
+    flex: 0 0 50%;
+    padding: 0px 15px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.33;
+    letter-spacing: -0.2px;
+    color: $primary;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+    }
+  }
+  &__contact {
+    padding: 0px 15px;
+    flex: 0 0 50%;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+    }
+    .wrap {
+      @extend %flex;
+      span {
+        flex: 0 0 100%;
+        input, textarea {
+          width: 100%;
+        }
+      }
+      &--three {
+        span {
+          flex: 0 0 33%;
+        }
+      }
+    }
+    label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: -0.1px;
+      text-align: left;
+      color: $primary;
+    }
+  }
+}
+
+.footer {
+  background: $primary;
+  color: $white;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  .container {
+    @extend %flex;
+    @media (max-width: $sm) {
+      flex-flow: column;
+    }
+  }
+  &__menu {
+    padding: 0px;
+    margin: 0px;
+    .menu-item {
+      display: inline-block;
+      list-style: none;
+      margin-left: 15px;
+      @media (max-width: $sm) {
+        margin: 15px;
+      }
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+}

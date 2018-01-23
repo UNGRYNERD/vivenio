@@ -6,10 +6,16 @@
 @import "../../bower_components/owl.carousel/src/scss/owl.carousel.scss";
 @import "../../bower_components/normalize-css/normalize.css";
 @import "common/global";
-@import "components/slideshow";
-@import "components/buttons";
-@import "components/comments";
 @import "components/forms";
+@import "components/buttons";
+
+
+@import "components/home/slideshow";
+@import "components/home/about";
+@import "components/home/featured";
+
+@import "components/map";
+@import "components/comments";
 @import "components/grid";
 @import "components/wp-classes";
 @import "layouts/header";

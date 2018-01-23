@@ -20,5 +20,6 @@
         'menu_class' => 'header__menu']);
     endif;
     ?>
+    <a href="#" class="header__menu__toggle">&#9776;</a>
   </div>
 </header>

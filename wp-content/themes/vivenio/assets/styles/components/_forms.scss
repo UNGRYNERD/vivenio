@@ -49,3 +49,13 @@
     }
   }
 }
+
+input[type=text], input[type=email], textarea {
+  border: solid 1px $secondary;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  text-align: left;
+  color: $primary;
+  padding: 9px 10px;
+}
