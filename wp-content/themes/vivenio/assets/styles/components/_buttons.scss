@@ -7,7 +7,7 @@
   border: solid 2px $secondary;
   padding: 16px 50px;
   text-decoration: none;
-  &:hover {
+  &:hover, &--active {
     color: $white;
     background: $secondary;
     text-decoration: none;

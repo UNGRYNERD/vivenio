@@ -18,18 +18,49 @@
   }
   &__options {
     display: none;
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
     margin: 0px;
     list-style: none;
     max-height: 270px;
     overflow: scroll;
+    background: $white;
+    width: 100%;
+    position: absolute;
+    z-index: 99;
     li {
       font-weight: 600;
       letter-spacing: -0.2px;
       margin-bottom: 10px;
+      &.parent {
+        margin-top: 20px;
+        padding-bottom: 8px;
+        border-bottom: solid 1px $primary;
+      }
+      &:first-of-type {
+        margin-top: 20px;
+      }
       a {
+        display: block;
         text-decoration: none;
         color: $secondary;
+      }
+      &.input {
+        border-top: solid 1px $secondary;
+        margin: 20px -20px -20px -20px;
+        input {
+          font-size: 16px;
+          padding: 18px 20px;
+          border: 0px;
+          color: $primary;
+          font-weight: 600;
+          width: 100%;
+        }
+        .button {
+          display: block;
+          color: $white;
+          text-align: center;
+          padding: 16px;
+        }
       }
     }
   }
@@ -46,6 +77,18 @@
   &.open {
     .dropdown__options {
       display: block;
+    }
+  }
+  .filters & {
+    border: solid 1px $secondary;
+    color: $primary;
+    &__options {
+      border: solid 1px $secondary;
+      li {
+        a {
+          color: $primary;
+        }
+      }
     }
   }
 }

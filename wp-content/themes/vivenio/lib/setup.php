@@ -101,7 +101,7 @@ function display_sidebar() {
  */
 function assets() {
 
-  wp_enqueue_style('vivenio/fonts', '//fonts.googleapis.com/css?family=Poppins:400,500,600', false, null );
+  wp_enqueue_style('vivenio/fonts', '//fonts.googleapis.com/css?family=Poppins:400,500,600,700', false, null );
 
   wp_enqueue_style('vivenio/css', Assets\asset_path('styles/main.css'), false, null);
 

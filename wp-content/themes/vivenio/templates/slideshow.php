@@ -14,22 +14,17 @@
         <h2 class="slides__slide__title"><?php the_sub_field('slide_title'); ?></h2>
         <p class="slides__slide__text"><?php the_sub_field('slide_text'); ?></p>
         <div class="dropdown">
-          <span class="dropdown__value">Elige tu zona</span>
+          <span class="dropdown__value"><?php esc_html_e('Elige tu zona', 'ungrynerd'); ?></span>
           <ul class="dropdown__options">
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem ipsum dolor sit</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Super super Lorem ipsum dolor sit</a></li>
-            <li><a href="#">Lorem ipsum</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
-            <li><a href="#">Lorem</a></li>
+            <?php $areas = get_terms('un_area', array('hide_empty' => 0, 'parent' => 0)); ?>
+            <?php foreach ($areas as $area): ?>
+              <li class="parent"><a href="#"><?= $area->name; ?></a></li>
+              <li><a href="#"><?php esc_html_e('Todo', 'ungrynerd'); ?> <?= $area->name; ?></a></li>
+              <?php $child_areas = get_terms('un_area', array('hide_empty' => 0, 'parent' => $area->term_id)); ?>
+              <?php foreach ($child_areas as $child_area): ?>
+                <li><a href="#"><?= $child_area->name; ?></a></li>
+              <?php endforeach ?>
+            <?php endforeach ?>
           </ul>
         </div>
         <p class="slides__slide__footer"><?php the_field('slide_footer'); ?></p>

@@ -1,0 +1,66 @@
+.properties {
+  @extend %container;
+  @extend %flex;
+  align-items: flex-start;
+  .filters {
+    flex: 0 0 $col*4;
+    padding-right: 170px;
+    &__field {
+      margin-bottom: 18px;
+      label {
+        display: block;
+        flex: 0 0 100%;
+        width: 100%;
+      }
+      &--price {
+        @extend %flex;
+        align-items: flex-start;
+        .dropdown {
+          flex: 0 0 48%;
+          margin-right: 4%;
+          &:last-of-type {
+            margin-right: 0px;
+          }
+        }
+      }
+      &--checks {
+        label {
+          display: block;
+          padding: 20px;
+          border: 1px solid $secondary;
+          border-bottom: 0px;
+          font-weight: 600;
+          line-height: 1.06;
+          letter-spacing: -0.2px;
+          color: $primary;
+          position: relative;
+          cursor: pointer;
+          input {
+            display: none;
+            &:checked + span {
+              background-color: $secondary;
+            }
+          }
+          span {
+            position: absolute;
+            width: 58px;
+            height: 100%;
+            border-left: 1px solid $secondary;
+            right: 0px;
+            top: 0px;
+            background: url('../images/icon-check.svg') $white no-repeat center center;
+          }
+          &:last-of-type {
+            border-bottom: 1px solid $secondary;
+          }
+        }
+      }
+    }
+  }
+  .prop-list {
+    flex: 0 0 $col*8;
+    &__property {
+
+    }
+  }
+}

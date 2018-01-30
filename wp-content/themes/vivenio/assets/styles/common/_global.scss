@@ -6,9 +6,10 @@
           box-sizing: border-box;
 }
 body, input, textarea {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Poppins;
 }
 body,
 html {
@@ -16,13 +17,18 @@ html {
 }
 
 body {
-  font-family: Poppins;
 }
 img {
   max-width: 100%;
   height: auto;
 }
-
+a {
+  color: $primary;
+  text-decoration: none;
+  &:hover {
+    color: $secondary;
+  }
+}
 .container {
   @extend %container;
 }
