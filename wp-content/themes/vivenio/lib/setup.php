@@ -39,6 +39,8 @@ function setup() {
   add_theme_support('post-thumbnails');
   add_image_size('slide', 1920, 1080, true);
   add_image_size('info-map', 300, 260, true);
+  add_image_size('listing', 430, 270, true);
+
 
 
   // Enable post formats

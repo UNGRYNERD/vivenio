@@ -5,12 +5,27 @@
   .filters {
     flex: 0 0 $col*4;
     padding-right: 170px;
+    &__title {
+      margin: 0px 0px 20px 0px;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 2.17;
+      letter-spacing: -0.7px;
+      color: $primary;
+    }
     &__field {
       margin-bottom: 18px;
-      label {
+      &__title {
+        margin-top: 0px;
+        margin-bottom: 15px;
         display: block;
         flex: 0 0 100%;
         width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 0.85;
+        letter-spacing: -0.3px;
+        color: $secondary;
       }
       &--price {
         @extend %flex;
@@ -56,11 +71,67 @@
         }
       }
     }
+    .button {
+      width: 100%;
+      display: block;
+    }
   }
   .prop-list {
     flex: 0 0 $col*8;
+    &__title {
+      margin: 0px;
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1.62;
+      letter-spacing: -0.9px;
+      color: $primary;
+    }
+    &__text {
+      font-family: Poppins;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+      color: $primary;
+      margin-bottom: 35px;
+    }
     &__property {
-
+      background-color: $secondary;
+      @extend %flex;
+      margin-bottom: 25px;
+      img {
+        flex: 0 0 50%;
+        width: 50%;
+      }
+      &__info {
+        flex: 0 0 50%;
+        padding: 17px;
+      }
+      &__title, &__location {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.14;
+        letter-spacing: -0.2px;
+        color: $primary;
+        margin: 0px;
+      }
+      &__address {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.11;
+        letter-spacing: -0.3px;
+        color: $white;
+        max-width: 70%;
+        margin-bottom: 18px;
+      }
+      &__desc {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.22;
+        letter-spacing: -0.3px;
+        color: $primary;
+        margin-bottom: 0px;
+      }
     }
   }
 }

@@ -6,13 +6,23 @@
   position: sticky;
   top: 0;
   z-index: 1020;
+  margin-bottom: 60px;
   @media (max-width: $md) {
     padding: 15px 0px;
     background-color: $primary;
+    margin-bottom: 30px;
   }
-  .home & {
+  .alt-header & {
     position: fixed;
     width: 100%;
+    .header__menu {
+      margin-bottom: 0px;
+      .menu-item {
+        a {
+          color: $white;
+        }
+      }
+    }
   }
   .scrolled & {
     background-color: $primary;
@@ -20,6 +30,14 @@
       display: none;
       &--alt {
         display: block;
+      }
+    }
+    .header__menu {
+      margin-bottom: 0px;
+      .menu-item {
+        a {
+          color: $white;
+        }
       }
     }
   }
@@ -86,7 +104,7 @@
         margin: 15px;
       }
       a {
-        color: $white;
+        color: $primary;
         text-decoration: none;
         &:hover {
           color: $secondary;

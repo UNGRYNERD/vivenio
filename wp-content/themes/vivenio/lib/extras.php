@@ -14,7 +14,9 @@ function body_class($classes) {
       $classes[] = basename(get_permalink());
     }
   }
-
+  if (is_front_page()) {
+    $classes[] = 'alt-header';
+  }
   // Add class if sidebar is active
   if (Setup\display_sidebar()) {
     $classes[] = 'sidebar-primary';
@@ -37,40 +39,30 @@ add_action('wp_ajax_get_all_properties', __NAMESPACE__ . '\\ungrynerd_get_all_pr
 add_action('wp_ajax_nopriv_get_all_properties', __NAMESPACE__ . '\\ungrynerd_get_all_properties');
 
 function ungrynerd_get_all_properties() {
-  $properties[] = array(
-                  'lat' => 40.4577984,
-                  'lng' => -3.4459560000000238,
+  $filter = ungrynerd_get_filters();
+  $props = new \WP_Query(array(
+    'post_type' => 'un_property',
+    'posts_per_page' => -1,
+    'meta_query' => $filter['meta_query'],
+    'tax_query' => $filter['tax_query']
+  ));
+  while ($props->have_posts()) {
+    $props->the_post();
+    $geo = get_field('property_geo');
+    $properties[] = array(
+                  'lat' => $geo['lat'],
+                  'lng' => $geo['lng'],
                   'info' => preg_replace('/\v(?:[\v\h]+)/', '', '<artcile class="map-info">
-                                <img width="1920" height="1080" src="http://vivenio.com/dev/wp-content/uploads/2018/01/breather-187923-300x260.jpg" class="attachment-slide size-slide" alt="">
+                                '. get_the_post_thumbnail(get_the_ID(), 'info-map') .'
                                 <div class="map-info__wrap">
-                                  <h2 class="map-info__title">Cerro de Valdecahonde<br>
-                              Aravaca<br>
-                              Madrid Capital</h2>
-                                  <p class="map-info__address">Av. del Talgo, 155<br>
-                              28023 Madrid</p>
-                                  <p class="map-info__text">Viviendas de 1 y 2 dormitorios
-                              Zonas comunes, garaje y piscina</p>
-                                  <a class="button map-info__link" href="#" target="">Ver más</a>
+                                  <h2 class="map-info__title">' . get_the_title() . '<br>' . get_field('property_location') . '</h2>
+                                  <p class="map-info__address">' . $geo['address'] . '</p>
+                                  <p class="map-info__text">' . get_field('property_desc') . '</p>
+                                  <a class="button map-info__link" href="' . get_permalink() . '" target="">Ver más</a>
                                 </div>
                               </artcile>')
                 );
-  $properties[] = array(
-                  'lat' => 40.49874,
-                  'lng' => -3.8824899999999616,
-                  'info' => preg_replace('/\v(?:[\v\h]+)/', '', '<artcile class="map-info">
-                                <img width="1920" height="1080" src="http://vivenio.com/dev/wp-content/uploads/2018/01/breather-187923-300x260.jpg" class="attachment-slide size-slide" alt="">
-                                <div class="map-info__wrap">
-                                  <h2 class="map-info__title">Cerro de Valdecahonde<br>
-                              Aravaca<br>
-                              Madrid Capital</h2>
-                                  <p class="map-info__address">Av. del Talgo, 155<br>
-                              28023 Madrid</p>
-                                  <p class="map-info__text">Viviendas de 1 y 2 dormitorios
-                              Zonas comunes, garaje y piscina</p>
-                                  <a class="button map-info__link" href="#" target="">Ver más</a>
-                                </div>
-                              </artcile>')
-                );
+  }
   echo json_encode($properties);
   wp_die();
 }
@@ -205,53 +197,61 @@ add_action('acf/init', __NAMESPACE__ . '\ungrynerd_acf_init');
 
 add_filter('query_vars', __NAMESPACE__ . '\ungrynerd_add_query_vars');
 function ungrynerd_add_query_vars($vars) {
-  array_push($vars, 'rooms', 'area', 'types', 'features', 'price_min', 'price_max');
+  array_push($vars, 'rooms', 'area', 'types', 'features', 'price_min', 'price_max', 'map');
   return $vars;
 }
 
 
 add_action('pre_get_posts', __NAMESPACE__ . '\ungrynerd_filter_query');
 function ungrynerd_filter_query($query) {
-  // You can use is_archive() or whatever you need here
-  if (is_main_query() && is_post_type_archive('un_property')) {
-    $taxs = array(
-              'area' => 'un_area',
-              'rooms' => 'un_room',
-              'types' => 'un_type',
-              'features' => 'un_feature'
-            );
-    $tax_query = array();
-    foreach ($taxs as $var => $tax) {
-      $terms = get_query_var($var);
-      if (!empty($terms)) {
-        $tax_query[] = array(
-          'taxonomy' => $tax,
-          'field' => 'slug',
-          'terms' => $terms
-        );
-      }
-    }
-    $query->set( 'tax_query', $tax_query);
-    $meta_query = array();
-
-    if (get_query_var('price_min')) {
-      $meta_query[] = array(
-                        'key' => 'property_price_min',
-                        'value' => get_query_var('price_min'),
-                        'compare' => '>=',
-                        'type' => 'NUMERIC'
-                      );
-    }
-    if (get_query_var('price_max')) {
-      $meta_query[] = array(
-                        'key' => 'property_price_max',
-                        'value' => get_query_var('price_max'),
-                        'compare' => '<=',
-                        'type' => 'NUMERIC'
-                      );
-    }
-
-    $query->set( 'meta_query', $meta_query);
-
+  if ($query->is_main_query() && is_post_type_archive('un_property')) {
+    $filter = ungrynerd_get_filters();
+    $query->set( 'tax_query', $filter['tax_query']);
+    $query->set( 'meta_query', $filter['meta_query']);
   }
+}
+
+function ungrynerd_get_filters() {
+  $taxs = array(
+            'area' => 'un_area',
+            'rooms' => 'un_room',
+            'types' => 'un_type',
+            'features' => 'un_feature'
+          );
+  $tax_query = array();
+  $meta_query = array();
+
+  foreach ($taxs as $var => $tax) {
+    $terms = $_REQUEST[$var];
+    if (!empty($terms)) {
+      $tax_query[] = array(
+        'taxonomy' => $tax,
+        'field' => 'slug',
+        'terms' => $terms
+      );
+    }
+  }
+  if ($_REQUEST['price_min']) {
+    $meta_query[] = array(
+                      'key' => 'property_price_min',
+                      'value' => intval($_REQUEST['price_min']),
+                      'compare' => '>=',
+                      'type' => 'NUMERIC'
+                    );
+  }
+  if ($_REQUEST['price_max']) {
+    $meta_query[] = array(
+                      'key' => 'property_price_max',
+                      'value' => intval($_REQUEST['price_max']),
+                      'compare' => '<=',
+                      'type' => 'NUMERIC'
+                    );
+  }
+
+  return array('tax_query' => $tax_query, 'meta_query' => $meta_query);
+}
+
+add_action('init', __NAMESPACE__ . '\ungrynerd_add_rewrite', 10, 0);
+function ungrynerd_add_rewrite() {
+  add_rewrite_rule( '^promociones/mapa/?', 'index.php?post_type=un_property&map=1','top' );
 }
