@@ -94,7 +94,30 @@
               map.setZoom(map.getZoom()-5);
             }
           });
+        } //end map
+
+        //calculate container width in properties
+        function calculateWidths() {
+          if($(window).width() > 1024){
+            var padding = ($(window).width() - $('.header__wrapper').width())/2;
+            var width = $('.prop-list').width() - padding;
+            $('.filters').css('padding-left', padding);
+            $('.prop-list__wrapper').css('width', width);
+          }
         }
+
+        calculateWidths();
+
+        $(window).on('resize', function(event) {
+          calculateWidths();
+        });
+
+        //links map and listing
+        $('.prop-list__options a').on('click', function(event) {
+          event.preventDefault();
+          $('.filters form').attr('action', $(this).attr('href'));
+          $('.filters form').submit();
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after pa ge specific JS is fired

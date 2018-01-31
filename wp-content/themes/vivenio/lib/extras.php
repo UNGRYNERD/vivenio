@@ -35,9 +35,17 @@ function excerpt_more() {
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
 
 
+function ungrynerd_svg($svg) {
+  $output = '';
+  if (empty($svg)) {
+    return;
+  }
+  $svg_file_path = \get_template_directory() . "/dist/images/" . $svg . ".svg";
+  return file_get_contents($svg_file_path);
+}
+
 add_action('wp_ajax_get_all_properties', __NAMESPACE__ . '\\ungrynerd_get_all_properties');
 add_action('wp_ajax_nopriv_get_all_properties', __NAMESPACE__ . '\\ungrynerd_get_all_properties');
-
 function ungrynerd_get_all_properties() {
   $filter = ungrynerd_get_filters();
   $props = new \WP_Query(array(
@@ -141,6 +149,7 @@ function ugnrynerd_aparment_post_type()  {
 }
 
 //TAXONOMIES
+add_action( 'init', __NAMESPACE__ . '\ungrynerd_property_taxonomies', 0);
 function ungrynerd_property_taxonomies() {
     register_taxonomy("un_area",
     array("un_property"),
@@ -186,13 +195,11 @@ function ungrynerd_property_taxonomies() {
         )
     );
 }
-add_action( 'init', __NAMESPACE__ . '\ungrynerd_property_taxonomies', 0);
 
-
+add_action('acf/init', __NAMESPACE__ . '\ungrynerd_acf_init');
 function ungrynerd_acf_init() {
   acf_update_setting('google_api_key', 'AIzaSyDi3Nfc8OxZr_UE_X-o4RXyruymMY3aV2o');
 }
-add_action('acf/init', __NAMESPACE__ . '\ungrynerd_acf_init');
 
 
 add_filter('query_vars', __NAMESPACE__ . '\ungrynerd_add_query_vars');
