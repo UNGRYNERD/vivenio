@@ -335,6 +335,11 @@
       order: 2;
       position: relative;
     }
+    @media (max-width: $xs) {
+      flex: 0 0 100%;
+      width: 100%;
+      padding: $spacer/2 0px;
+    }
     &__title, &__location {
       font-size: 14px;
       font-weight: 500;
@@ -373,7 +378,7 @@
     @media (max-width: $sm) {
       flex: 0 0 100%;
       width: 100%;
-      padding: $spacer/2;
+      padding: $spacer/2 0px;
       order: 1;
     }
     @media (max-width: $xs) {
@@ -408,6 +413,7 @@
     @media (max-width: $xs) {
       flex: 0 0 100%;
       width: 100%;
+      padding: $spacer/2 0px;
     }
     &__wrapper {
       padding: 10px;
@@ -577,9 +583,19 @@
         letter-spacing: -0.9px;
         color: $secondary;
         margin-bottom: 20px;
+        @media (max-width: $md) {
+          line-height: 1.04;
+          margin: 15px 0px 0px 0px;
+        }
+        @media (max-width: $xs) {
+          font-size: 30px;
+        }
       }
       &__info, &__contact {
         top: 160px;
+        @media (max-width: $md) {
+          top: 0px;
+        }
       }
       &__info {
         &__apartment {
@@ -604,6 +620,10 @@
           margin: 20px 20px 20px 0px;
           padding: 16px;
           text-align: center;
+          @media (max-width: $md) {
+            font-size: 15px;
+            margin-right: 0px;
+          }
         }
       }
     }
