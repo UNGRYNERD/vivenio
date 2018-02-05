@@ -3,7 +3,11 @@
 // Automatically injected Bower dependencies via wiredep (never manually edit this block)
 // bower:scss
 // endbower
+
 @import "../../bower_components/owl.carousel/src/scss/owl.carousel.scss";
+@import "../../bower_components/featherlight/release/featherlight.min";
+@import "../../bower_components/featherlight/release/featherlight.gallery.min";
+
 @import "../../bower_components/normalize-css/normalize.css";
 @import "common/global";
 @import "components/forms";

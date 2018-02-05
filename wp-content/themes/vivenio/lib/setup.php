@@ -40,6 +40,7 @@ function setup() {
   add_image_size('slide', 1920, 1080, true);
   add_image_size('info-map', 300, 260, true);
   add_image_size('listing', 430, 270, true);
+  add_image_size('gallery', 600, 9999, false);
 
 
 
@@ -112,6 +113,7 @@ function assets() {
   }
   wp_enqueue_script('google-maps', '//maps.google.com/maps/api/js?key=AIzaSyDi3Nfc8OxZr_UE_X-o4RXyruymMY3aV2o&#038;libraries=places&#038;language=es', ['jquery'], null, true);
   wp_enqueue_script('owl.carousel', Assets\asset_path('scripts/owl.carousel.js'), ['jquery'], null, true);
+  wp_enqueue_script('featherlight', Assets\asset_path('scripts/featherlight.js'), ['jquery'], null, true);
   wp_register_script('vivenio/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
   $ungrynerd = array(
                       'ajaxurl' => admin_url('admin-ajax.php'),

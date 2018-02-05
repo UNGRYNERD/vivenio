@@ -113,8 +113,8 @@ function ugnrynerd_property_post_type()  {
 }
 
 /* VIVIENDAS POST TYPE */
-add_action('init',  __NAMESPACE__ . '\ugnrynerd_aparment_post_type');
-function ugnrynerd_aparment_post_type()  {
+add_action('init',  __NAMESPACE__ . '\ugnrynerd_apartment_post_type');
+function ugnrynerd_apartment_post_type()  {
   $labels = array(
     'name' => __('Viviendas', 'ungrynerd'),
     'singular_name' => __('Vivienda', 'ungrynerd'),
@@ -143,9 +143,9 @@ function ugnrynerd_aparment_post_type()  {
     'rewrite' => array( 'slug' => 'viviendas' ),
     'taxonomies' => array(),
     'has_archive' => true,
-    'supports' => array('title', 'editor')
+    'supports' => array('title', 'editor', 'thumbnail')
   );
-  register_post_type('un_arparment',$args);
+  register_post_type('un_apartment',$args);
 }
 
 //TAXONOMIES

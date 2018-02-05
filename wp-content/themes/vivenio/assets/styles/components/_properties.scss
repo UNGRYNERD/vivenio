@@ -138,6 +138,12 @@
         letter-spacing: -0.2px;
         color: $primary;
         margin: 0px;
+        a {
+          color: $primary;
+          &:hover {
+            color: $white;
+          }
+        }
       }
       &__address {
         font-size: 18px;
@@ -159,3 +165,421 @@
     }
   }
 }
+
+
+.property {
+  min-width: 100%;
+  min-height: 100%;
+  margin-top: -60px;
+  margin-bottom: 100px;
+  @media (max-width: $md) {
+    margin-top: -30px;
+  }
+  &__intro {
+    width: 100%;
+    height: 100vh;
+    padding: 45px 0px;
+    position: relative;
+    margin-bottom: 27px;
+    &__wrapper {
+      @extend %container;
+      .button {
+        display: inline-block;
+      }
+      * {
+        max-width: 500px;
+      }
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      width: 39px;
+      height: 32px;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: url('../images/icon-scroll.svg') no-repeat center center;
+      animation: bounce 5s infinite;
+    }
+  }
+  &__title, &__location {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.1;
+    letter-spacing: -0.9px;
+    color: $white;
+    margin: 0px;
+  }
+  &__location {
+    margin-bottom: 21px;
+    span {
+      color: $secondary;
+    }
+  }
+  &__text {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    text-align: left;
+    color: $white;
+    margin-bottom: 50px;
+  }
+  &__goback {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.31;
+    letter-spacing: -0.1px;
+    color: $white;
+    display: block;
+    margin-bottom: 35px;
+    svg {
+      position: relative;
+      margin-right: 5px;
+      top: 2px;
+    }
+    &:hover {
+      svg {
+        g {
+          stroke: $secondary;
+        }
+      }
+    }
+  }
+  &__wrapper {
+    @extend %container;
+    @extend %flex;
+    align-items: flex-start;
+  }
+  &__info {
+    flex: 0 0 25%;
+    width: 25%;
+    position: sticky;
+    top: 0px;
+    padding-right: $spacer;
+    &__title, &__location {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.29;
+      letter-spacing: -0.2px;
+      color: $primary;
+      font-weight: bold;
+      margin: 0px;
+    }
+    &__location {
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+    &__features {
+      font-size: 12px;
+      line-height: 1.33;
+      letter-spacing: -0.1px;
+      color: $primary;
+      &__title {
+        color: $secondary;
+        margin: 0px;
+      }
+      p {
+        margin: 0px;
+      }
+    }
+  }
+  &__data {
+    flex: 0 0 50%;
+    width: 50%;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.33;
+    letter-spacing: -0.1px;
+    color: $primary;
+  }
+  &__gallery {
+    margin: 0px 0px 65px 0px;
+    padding: 0px;
+    max-width: 100%;
+    column-count: 2;
+    column-gap: 29px;
+    &__item {
+      margin-bottom: 29px;
+      display: block;
+    }
+  }
+  &__contact {
+    flex: 0 0 25%;
+    width: 25%;
+    position: sticky;
+    top: 0px;
+    padding-left: $spacer;
+    &__wrapper {
+      padding: 10px;
+      background-color: $secondary;
+    }
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.22;
+      letter-spacing: -0.2px;
+      color: $white;
+      margin: 0px 0px 10px 0px;
+      span {
+        color: $primary;
+      }
+      &--subtitle {
+        font-size: 16px;
+      }
+    }
+
+    p {
+      margin: 0px 0px 7px 0px;
+    }
+    input[type=email], input[type=text], textarea {
+      max-width: 100%;
+    }
+    label {
+      font-size: 10px;
+      font-weight: 500;
+      color: $white;
+    }
+    .button {
+      text-align: center;
+      display: block;
+      background-color: $primary;
+      width: 100%;
+    }
+    .reference {
+      input {
+        background: transparent;
+        color: $white;
+        padding: 0px;
+        display: inline;
+        width: 50%;
+      }
+      &:before {
+        display: inline;
+        font-size: 14px;
+        font-weight: 500;
+        color: $white;
+        content: "Referencia: ";
+      }
+    }
+    span.wpcf7-not-valid-tip {
+      color: $white;
+      font-size: 12px;
+    }
+    div.wpcf7-validation-errors {
+      border: 0px;
+      margin: 0px;
+      padding: 0px;
+      font-size: 14px;
+      font-style: italic;
+      text-align:center;
+    }
+  }
+  .apartaments {
+    @extend %flex;
+    &__title {
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.1;
+      letter-spacing: -0.7px;
+      color: $primary;
+      margin: 0px 0px 15px 0px;
+      span {
+        display: block;
+        color: $secondary;
+      }
+      &--subtitle {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+    &__apartment {
+      flex: 0 0 48%;
+      width: 48%;
+      margin: 30px 2%;
+      background-color: $secondary;
+      &:nth-child(odd) {
+        margin-left: 0px;
+      }
+      &:nth-child(even) {
+        margin-right: 0px;
+      }
+      img {
+        width: 100%;
+      }
+      &__info {
+        padding: 15px;
+      }
+      &__title {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.2px;
+        color: $white;
+        margin: 0px;
+        a {
+          color: $white;
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+      &__location {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.2px;
+        color: $white;
+        margin: 0px 0px 15px 0px;
+      }
+      &__address {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.29;
+        letter-spacing: -0.2px;
+        color: $white;
+        margin: 0px;
+      }
+      &__desc {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.29;
+        letter-spacing: -0.2px;
+        color: $primary;
+        margin: 0px 0px 15px 0px;
+      }
+      &__price {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.29;
+        letter-spacing: -0.3px;
+        text-align: left;
+        color: $primary;
+        margin: 0px;
+        span {
+          font-size: 20px;
+          line-height: 0.9;
+        }
+      }
+    }
+  }
+  &--apartment {
+    .property {
+      &__title {
+        width: 100%;
+        font-size: 40px;
+        font-weight: bold;
+        line-height: 1.62;
+        letter-spacing: -0.9px;
+        color: $secondary;
+        margin-bottom: 20px;
+      }
+      &__info, &__contact {
+        top: 160px;
+      }
+      &__info {
+        &__apartment {
+          font-size: 14px;
+          font-weight: bold;
+          line-height: 1.29;
+          letter-spacing: -0.2px;
+          color: $secondary;
+        }
+        &__price {
+          font-size: 22px;
+          font-weight: bold;
+          line-height: 0.82;
+          letter-spacing: -0.6px;
+          text-align: left;
+          color: $secondary;
+          margin:0px 0px 20px 0px;
+        }
+        .button {
+          font-size: 16px;
+          display: block;
+          margin: 20px 20px 20px 0px;
+          padding: 16px;
+          text-align: center;
+        }
+      }
+    }
+
+  }
+}
+
+
+.featherlight {
+  &:last-of-type {
+    background-color: rgba($white, 0.9);
+
+  }
+  .featherlight-content {
+    width: 100%;
+    margin: 0px;
+    background: transparent;
+    text-align: center;
+  }
+  .featherlight-image {
+    display: inline-block;
+  }
+  .featherlight-next, .featherlight-previous {
+    span {
+      display: block;
+      position: absolute;
+      top: 50%;
+      pointer-events: visible;
+      display: block;
+      left: 50px;
+      width: 50px;
+      height: 50px;
+      border-left: 2px solid $primary;
+      border-top: 2px solid  $primary;
+      transform: rotate(-45deg);
+      color: transparent;
+      font-size: 0px;
+    }
+    &:hover {
+      background-color: transparent;
+      span {
+        border-color: $secondary;
+      }
+    }
+  }
+  .featherlight-next {
+    span {
+      left: auto;
+      right: 50px;
+      border-left: 0px;
+      border-right: 2px solid $primary;
+      transform: rotate(45deg);
+    }
+  }
+  .featherlight-close-icon {
+    color: transparent;
+    font-size: 0px;
+    width: 98px;
+    height: 98px;
+    right: 30px;
+    top: 0px;
+    cursor: pointer;
+    &:after, &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0px;
+      top: 50%;
+      background-color: $primary;
+    }
+    &:before {
+      transform: rotate(-90deg);
+    }
+    &:hover {
+      &:after, &:before {
+        background-color: $secondary;
+      }
+    }
+  }
+}
+
+

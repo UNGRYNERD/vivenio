@@ -22,6 +22,12 @@
     },
     "owl.carousel.js": {
       "bower": ["owl.carousel"]
+    },
+    "featherlight.js": {
+      "files": [
+        "../bower_components/featherlight/release/featherlight.min.js",
+        "../bower_components/featherlight/release/featherlight.gallery.min.js"
+      ]
     }
   },
   "config": {
