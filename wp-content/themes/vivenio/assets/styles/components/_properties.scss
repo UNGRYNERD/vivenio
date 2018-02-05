@@ -6,6 +6,43 @@
     flex: 0 0 38%;
     width: 38%;
     padding-right: 170px;
+    @media (max-width: $md) {
+      padding-right: $spacer*2;
+      padding-left: $spacer/2;
+    }
+    @media (max-width: $sm) {
+      flex: 0 0 300px;
+      width: 300px;
+      left: -300px;
+      position: absolute;
+      background: $white;
+      padding-right: $spacer/2;
+      transition: left 0.3s linear;
+      padding-bottom: 50px;
+      &.open {
+        left: 0px;
+        .filters__toggle {
+          position: absolute;
+          left: auto;
+          top: 10px;
+          right: 10px;
+        }
+      }
+    }
+
+    &__toggle {
+      display: none;
+      @media (max-width: $md) {
+        position: fixed;
+        text-align: center;
+        padding: 20px;
+        left: 0px;
+        background-color: $white;
+        top: 91px;
+        display: block;
+        border: 1px solid $primary;
+      }
+    }
     &__title {
       margin: 0px 0px 20px 0px;
       font-size: 30px;
@@ -80,6 +117,14 @@
   .prop-list {
     flex: 0 0 62%;
     width: 62%;
+    @media (max-width: $md) {
+      padding-right: $spacer/2;
+    }
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+      width: 100%;
+      padding-left: $spacer/2;
+    }
     &__title {
       margin: 0px;
       font-size: 40px;
@@ -87,6 +132,9 @@
       line-height: 1.62;
       letter-spacing: -0.9px;
       color: $primary;
+      @media (max-width: $md) {
+        font-size: 30px;
+      }
     }
     &__text {
       font-family: Poppins;
@@ -96,6 +144,9 @@
       letter-spacing: -0.4px;
       color: $primary;
       margin-bottom: 35px;
+      @media (max-width: $md) {
+        font-size: 16px;
+      }
     }
     &__options {
       margin-bottom: 25px;
@@ -123,6 +174,10 @@
       &__img {
         flex: 0 0 50%;
         width: 50%;
+        @media (max-width: $xs) {
+          flex: 0 0 100%;
+          width: 100%;
+        }
         img {
           display: block;
         }
@@ -130,6 +185,10 @@
       &__info {
         flex: 0 0 50%;
         padding: 17px;
+        @media (max-width: $xs) {
+          flex: 0 0 100%;
+          width: 100%;
+        }
       }
       &__title, &__location {
         font-size: 22px;
@@ -138,6 +197,9 @@
         letter-spacing: -0.2px;
         color: $primary;
         margin: 0px;
+        @media (max-width: $md) {
+          font-size: 18px;
+        }
         a {
           color: $primary;
           &:hover {
@@ -153,6 +215,9 @@
         color: $white;
         max-width: 70%;
         margin-bottom: 18px;
+        @media (max-width: $md) {
+          font-size: 16px;
+        }
       }
       &__desc {
         font-size: 18px;
@@ -161,6 +226,9 @@
         letter-spacing: -0.3px;
         color: $primary;
         margin-bottom: 0px;
+        @media (max-width: $md) {
+          font-size: 16px;
+        }
       }
     }
   }
@@ -209,6 +277,9 @@
     letter-spacing: -0.9px;
     color: $white;
     margin: 0px;
+    @media (max-width: $xs) {
+      font-size: 30px;
+    }
   }
   &__location {
     margin-bottom: 21px;
@@ -257,6 +328,13 @@
     position: sticky;
     top: 0px;
     padding-right: $spacer;
+    @media (max-width: $sm) {
+      flex: 0 0 50%;
+      width: 50%;
+      padding: $spacer/2;
+      order: 2;
+      position: relative;
+    }
     &__title, &__location {
       font-size: 14px;
       font-weight: 500;
@@ -292,6 +370,16 @@
     line-height: 1.33;
     letter-spacing: -0.1px;
     color: $primary;
+    @media (max-width: $sm) {
+      flex: 0 0 100%;
+      width: 100%;
+      padding: $spacer/2;
+      order: 1;
+    }
+    @media (max-width: $xs) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
   }
   &__gallery {
     margin: 0px 0px 65px 0px;
@@ -310,6 +398,17 @@
     position: sticky;
     top: 0px;
     padding-left: $spacer;
+    @media (max-width: $sm) {
+      flex: 0 0 50%;
+      width: 50%;
+      padding: $spacer/2;
+      order: 3;
+      position: relative;
+    }
+    @media (max-width: $xs) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
     &__wrapper {
       padding: 10px;
       background-color: $secondary;
@@ -398,6 +497,11 @@
       width: 48%;
       margin: 30px 2%;
       background-color: $secondary;
+      @media (max-width: $xs) {
+        flex: 0 0 100%;
+        width: 100%;
+        margin: 15px 0px;
+      }
       &:nth-child(odd) {
         margin-left: 0px;
       }
@@ -556,12 +660,18 @@
   }
   .featherlight-close-icon {
     color: transparent;
+    background-color: transparent;
     font-size: 0px;
     width: 98px;
     height: 98px;
     right: 30px;
     top: 0px;
     cursor: pointer;
+    @media (max-width: $sm) {
+      width: 30px;
+      height: 30px;
+      right: 10px;
+    }
     &:after, &:before {
       content: '';
       position: absolute;

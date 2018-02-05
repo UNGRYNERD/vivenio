@@ -109,6 +109,9 @@
         &:hover {
           color: $secondary;
         }
+        @media (max-width: $md) {
+          color: $white;
+        }
       }
     }
   }

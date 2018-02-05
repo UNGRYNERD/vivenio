@@ -1,6 +1,7 @@
 <?php use Roots\Sage\Extras; ?>
 <section class="properties">
   <aside class="filters">
+    <a href="#" class="filters__toggle">Filtros</a>
     <h2 class="filters__title"><?php esc_html_e('Filtros', 'ungrynerd'); ?></h2>
     <?php get_template_part('templates/filters') ?>
   </aside>

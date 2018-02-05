@@ -118,6 +118,12 @@
           $('.filters form').attr('action', $(this).attr('href'));
           $('.filters form').submit();
         });
+
+        $('.filters__toggle').on('click', function(event) {
+          event.preventDefault();
+          $(window).scrollTop(0);
+          $('.properties .filters').toggleClass('open');
+        });
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after pa ge specific JS is fired
@@ -209,6 +215,8 @@
           });
 
         } //end map
+
+
       }
     }
   };
