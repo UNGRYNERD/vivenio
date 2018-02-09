@@ -48,8 +48,9 @@ add_action('wp_ajax_get_all_properties', __NAMESPACE__ . '\\ungrynerd_get_all_pr
 add_action('wp_ajax_nopriv_get_all_properties', __NAMESPACE__ . '\\ungrynerd_get_all_properties');
 function ungrynerd_get_all_properties() {
   $filter = ungrynerd_get_filters();
+  $cpt = isset($_REQUEST['cpt']) ? $_REQUEST['cpt'] : 'un_property';
   $props = new \WP_Query(array(
-    'post_type' => 'un_property',
+    'post_type' => $cpt,
     'posts_per_page' => -1,
     'meta_query' => $filter['meta_query'],
     'tax_query' => $filter['tax_query']
@@ -100,7 +101,7 @@ function ugnrynerd_property_post_type()  {
     'show_ui' => true,
     'query_var' => true,
     'capability_type' => 'post',
-    'show_in_nav_menus' => false,
+    'show_in_nav_menus' => true,
     'hierarchical' => false,
     'exclude_from_search' => false,
     'menu_position' => 5,
@@ -110,6 +111,42 @@ function ugnrynerd_property_post_type()  {
     'supports' => array('title', 'editor', 'thumbnail')
   );
   register_post_type('un_property',$args);
+}
+
+/* PROMOCIONES POST TYPE */
+add_action('init',  __NAMESPACE__ . '\ugnrynerd_local_post_type');
+function ugnrynerd_local_post_type()  {
+  $labels = array(
+    'name' => __('Locales', 'ungrynerd'),
+    'singular_name' => __('Local', 'ungrynerd'),
+    'add_new' => __('Añadir Local', 'ungrynerd'),
+    'add_new_item' => __('Añadir Local', 'ungrynerd'),
+    'edit_item' => __('Editar Local', 'ungrynerd'),
+    'new_item' => __('Nuevo Local', 'ungrynerd'),
+    'view_item' => __('Ver locales', 'ungrynerd'),
+    'search_items' => __('Buscar locales', 'ungrynerd'),
+    'not_found' =>  __('No se han encontrado locales ', 'ungrynerd'),
+    'not_found_in_trash' => __('No hay locales en la papelera', 'ungrynerd'),
+    'parent_item_colon' => ''
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'capability_type' => 'post',
+    'show_in_nav_menus' => true,
+    'hierarchical' => false,
+    'exclude_from_search' => false,
+    'menu_position' => 5,
+    'rewrite' => array( 'slug' => 'locales' ),
+    'taxonomies' => array('un_area'),
+    'has_archive' => true,
+    'supports' => array('title', 'editor', 'thumbnail')
+  );
+  register_post_type('un_local',$args);
 }
 
 /* VIVIENDAS POST TYPE */
@@ -136,7 +173,7 @@ function ugnrynerd_apartment_post_type()  {
     'show_ui' => true,
     'query_var' => true,
     'capability_type' => 'post',
-    'show_in_nav_menus' => false,
+    'show_in_nav_menus' => true,
     'hierarchical' => false,
     'exclude_from_search' => false,
     'menu_position' => 5,
@@ -211,7 +248,7 @@ function ungrynerd_add_query_vars($vars) {
 
 add_action('pre_get_posts', __NAMESPACE__ . '\ungrynerd_filter_query');
 function ungrynerd_filter_query($query) {
-  if ($query->is_main_query() && is_post_type_archive('un_property')) {
+  if ($query->is_main_query() && (is_post_type_archive('un_local') || is_post_type_archive('un_property') || is_taxonomy('un_area'))) {
     $filter = ungrynerd_get_filters();
     $query->set( 'tax_query', $filter['tax_query']);
     $query->set( 'meta_query', $filter['meta_query']);
@@ -221,6 +258,7 @@ function ungrynerd_filter_query($query) {
 function ungrynerd_get_filters() {
   $taxs = array(
             'area' => 'un_area',
+            'un_area' => 'un_area',
             'rooms' => 'un_room',
             'types' => 'un_type',
             'features' => 'un_feature'
@@ -261,4 +299,6 @@ function ungrynerd_get_filters() {
 add_action('init', __NAMESPACE__ . '\ungrynerd_add_rewrite', 10, 0);
 function ungrynerd_add_rewrite() {
   add_rewrite_rule( '^promociones/mapa/?', 'index.php?post_type=un_property&map=1','top' );
+  add_rewrite_rule( '^locales/mapa/?', 'index.php?post_type=un_local&map=1','top' );
+
 }

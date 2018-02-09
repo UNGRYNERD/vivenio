@@ -19,6 +19,15 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+        $('.write-us').on('click', function(event) {
+          event.preventDefault();
+          $('.popup').addClass('visible');
+        });
+        $('.popup__close').on('click', function(event) {
+          event.preventDefault();
+          $('.popup').removeClass('visible');
+        });
+
         $('.header__menu__toggle').on('click', function(event) {
           event.preventDefault();
           $('.header__menu').toggleClass('visible');
@@ -36,12 +45,15 @@
           $(el).on('click', function(event) {
             event.stopPropagation();
             event.preventDefault();
-            $(this).addClass('open');
+            $(this).toggleClass('open');
 
           });
           $(el).on('click', '.dropdown__options a', function(event) {
             event.stopPropagation();
             event.preventDefault();
+            if ($(el).data('go')) {
+              window.location = $(this).attr('href');
+            }
             var dropValue = $(el).children('.dropdown__value');
             if ($(event.target).hasClass('button')) {
               dropValue.text($(el).find('input').val() || 0);
@@ -178,6 +190,26 @@
         // JavaScript to be fired on the home page, after the init JS
       }
     },
+    'page': {
+      init: function() {
+        if ($('#contact-map').length) {
+          var latlng = new google.maps.LatLng($('#contact-map').data('lat'), $('#contact-map').data('lng'));
+
+          var map = new google.maps.Map(document.getElementById('contact-map'), {
+            styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}],
+            zoom: 12,
+            center: latlng,
+          });
+
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng($('#contact-map').data('lat'), $('#contact-map').data('lng')),
+            map: map,
+            icon: ungrynerd.path + '/dist/images/icon-marker.png'
+          });
+
+        } //end map
+      }
+    },
     // About us page, note the change from about-us to about_us.
     'single': {
       init: function() {
@@ -198,6 +230,12 @@
           galleryFadeIn: 300,
           openSpeed: 300
         });
+        $.featherlightGallery.prototype.afterContent = function() {
+          console.log(this.$currentTarget.find('img').attr('alt'));
+          var caption = this.$currentTarget.find('img').attr('alt');
+          this.$instance.find('.caption').remove();
+          $('<div class="caption">').text(caption).prependTo(this.$instance.find('.featherlight-content'));
+        };
 
         if ($('#map-single').length) {
           var latlng = new google.maps.LatLng($('.property').data('lat'), $('.property').data('lng'));

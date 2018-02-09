@@ -5,12 +5,10 @@
   .filters {
     flex: 0 0 38%;
     width: 38%;
-    padding-right: 170px;
+    padding-right: 8%;
     @media (max-width: $md) {
       padding-right: $spacer*2;
       padding-left: $spacer/2;
-    }
-    @media (max-width: $sm) {
       flex: 0 0 300px;
       width: 300px;
       left: -300px;
@@ -120,7 +118,7 @@
     @media (max-width: $md) {
       padding-right: $spacer/2;
     }
-    @media (max-width: $sm) {
+    @media (max-width: $md) {
       flex: 0 0 100%;
       width: 100%;
       padding-left: $spacer/2;
@@ -467,6 +465,9 @@
         content: "Referencia: ";
       }
     }
+    .wpcf7-list-item {
+      margin: 0px;
+    }
     span.wpcf7-not-valid-tip {
       color: $white;
       font-size: 12px;
@@ -478,6 +479,29 @@
       font-size: 14px;
       font-style: italic;
       text-align:center;
+    }
+    label {
+      input[type=checkbox] {
+        display: none;
+        &:checked + .wpcf7-list-item-label {
+          &:before {
+            background: url('../images/icon-check-alt.svg') no-repeat center center $white;
+            background-size: 70%;
+          }
+        }
+      }
+      .wpcf7-list-item-label {
+        &:before {
+          display: inline-block;
+          border: solid 1px $secondary;
+          background-color: $white;
+          width: 18px;
+          height: 18px;
+          position: relative;
+          top: 4px;
+          margin-right: 5px;
+        }
+      }
     }
   }
   .apartaments {
@@ -642,6 +666,15 @@
     margin: 0px;
     background: transparent;
     text-align: center;
+    .caption {
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 2.17;
+      letter-spacing: -0.7px;
+      color: $secondary;
+      @extend %container;
+      text-align: left;
+    }
   }
   .featherlight-image {
     display: inline-block;

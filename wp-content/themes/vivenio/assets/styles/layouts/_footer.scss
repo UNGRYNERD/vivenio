@@ -59,6 +59,31 @@
       text-align: left;
       color: $primary;
     }
+    .wpcf7-list-item {
+      margin: 0px;
+    }
+    label {
+      input[type=checkbox] {
+        display: none;
+        &:checked + .wpcf7-list-item-label {
+          &:before {
+            background: url('../images/icon-check.svg') no-repeat center center $secondary;
+            background-size: 70%;
+          }
+        }
+      }
+      .wpcf7-list-item-label {
+        &:before {
+          display: inline-block;
+          border: solid 1px $secondary;
+          width: 18px;
+          height: 18px;
+          position: relative;
+          top: 4px;
+          margin-right: 5px;
+        }
+      }
+    }
   }
 }
 

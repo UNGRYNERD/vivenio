@@ -1,10 +1,15 @@
-<form action="" method="post">
+<form action="<?= get_post_type_archive_link('un_property') ?>" method="post">
+  <input type="hidden" name="cpt" value="<?= $wp_query->query['post_type']; ?>">
   <div class="filters__field">
     <p class="filters__field__title"><?php esc_html_e('Elige tu zona', 'ungrynerd'); ?></p>
     <?php $areas = get_terms('un_area', array('hide_empty' => 0, 'parent' => 0)); ?>
     <div class="dropdown" data-target="#area">
-      <?php $queried_area = get_term_by('slug', get_query_var('area') , 'un_area') ?>
-      <span class="dropdown__value"><?= get_query_var('area') ? $queried_area->name : esc_html__('Elige tu zona', 'ungrynerd'); ?></span>
+      <?php if (get_query_var('area')) : ?>
+        <?php $queried_area = get_term_by('slug', get_query_var('area'), 'un_area') ?>
+      <?php else: ?>
+        <?php $queried_area = get_term_by('slug', get_query_var('un_area') , 'un_area') ?>
+      <?php endif; ?>
+      <span class="dropdown__value"><?= $queried_area ? $queried_area->name : esc_html__('Elige tu zona', 'ungrynerd'); ?></span>
       <ul class="dropdown__options">
         <?php foreach ($areas as $area): ?>
           <li class="parent"><a href="#" data-value="<?= $area->slug ?>"><?= $area->name; ?></a></li>
@@ -16,7 +21,7 @@
         <?php endforeach ?>
       </ul>
     </div>
-    <input type="hidden" value="<?= get_query_var('area') ?>" id="area" name="area">
+    <input type="hidden" value="<?= $queried_area ? $queried_area->slug : ''; ?>" id="area" name="area">
   </div>
   <div class="filters__field filters__field--price">
     <p class="filters__field__title"><?php esc_html_e('Precio', 'ungrynerd'); ?></p>
