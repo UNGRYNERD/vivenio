@@ -37,6 +37,9 @@
       .menu-item {
         a {
           color: $white;
+          &:hover {
+            color: $secondary;
+          }
         }
       }
     }

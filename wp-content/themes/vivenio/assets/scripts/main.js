@@ -151,6 +151,9 @@
           dots: false,
           nav: true,
           loop: true,
+          autoplay:true,
+          autoplayTimeout:5000,
+          autoplayHoverPause:true
         });
         slides.on('translate.owl.carousel',function(e){
           $('.owl-item video').each(function(){
@@ -251,9 +254,12 @@
             map: map,
             icon: ungrynerd.path + '/dist/images/icon-marker.png'
           });
-
         } //end map
 
+        $('.button--viviendas').on('click', function(event) {
+          event.preventDefault();
+          $("html, body").animate({ scrollTop: $('#viviendas').offset().top -(15) }, 500);
+        });
 
       }
     }

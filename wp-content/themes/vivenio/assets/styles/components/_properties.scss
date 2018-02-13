@@ -33,18 +33,19 @@
       @media (max-width: $md) {
         position: fixed;
         text-align: center;
-        padding: 20px;
+        padding: 10px 20px;
+        font-weight: bold;
+        color: $white;
         left: 0px;
-        background-color: $white;
+        background-color: $secondary;
         top: 91px;
         display: block;
-        border: 1px solid $primary;
       }
     }
     &__title {
       margin: 0px 0px 20px 0px;
-      font-size: 30px;
-      font-weight: 500;
+      font-size: 28px;
+      font-weight: bold;
       line-height: 2.17;
       letter-spacing: -0.7px;
       color: $primary;
@@ -136,7 +137,7 @@
     }
     &__text {
       font-family: Poppins;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.4px;
@@ -154,12 +155,15 @@
         font-weight: 500;
         line-height: 20px;
         letter-spacing: -0.2px;
-        color: $secondary;
+        color: $primary;
         display: flex;
         align-items: center;
         margin-right:40px;
         svg {
           margin-right: 10px;
+        }
+        &:hover {
+          color: $secondary;
         }
       }
     }
@@ -193,17 +197,18 @@
         font-weight: 600;
         line-height: 1.14;
         letter-spacing: -0.2px;
-        color: $primary;
+        color: $white;
         margin: 0px;
         @media (max-width: $md) {
           font-size: 18px;
         }
         a {
-          color: $primary;
+          color: $white;
           &:hover {
-            color: $white;
+            color: $primary;
           }
         }
+
       }
       &__address {
         font-size: 18px;
@@ -226,6 +231,15 @@
         margin-bottom: 0px;
         @media (max-width: $md) {
           font-size: 16px;
+        }
+      }
+      &:hover {
+        .prop-list__property__location,
+        .prop-list__property__title {
+          color: $primary;
+          a {
+            color: $primary;
+          }
         }
       }
     }
@@ -324,7 +338,7 @@
     flex: 0 0 25%;
     width: 25%;
     position: sticky;
-    top: 0px;
+    top: 15px;
     padding-right: $spacer;
     @media (max-width: $sm) {
       flex: 0 0 50%;
@@ -383,6 +397,9 @@
       flex: 0 0 100%;
       width: 100%;
     }
+    p:first-of-type {
+      margin-top: 0px;
+    }
   }
   &__gallery {
     margin: 0px 0px 65px 0px;
@@ -399,7 +416,7 @@
     flex: 0 0 25%;
     width: 25%;
     position: sticky;
-    top: 0px;
+    top: 15px;
     padding-left: $spacer;
     @media (max-width: $sm) {
       flex: 0 0 50%;
