@@ -7,7 +7,7 @@
       <h1 class="property__title"><?php the_title() ?></h1>
 
       <aside class="property__info">
-        <p class="property__info__price">desde <?php the_field('property_price') ?>€/mes</p>
+        <p class="property__info__price">desde <?php the_field('property_price_min') ?>€/mes</p>
         <h3 class="property__info__location">
           <strong><?php the_title(); ?></strong> <br>
           <?php the_field('property_location') ?> <br>

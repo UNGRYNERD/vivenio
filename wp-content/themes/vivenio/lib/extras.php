@@ -58,6 +58,13 @@ function ungrynerd_get_all_properties() {
   while ($props->have_posts()) {
     $props->the_post();
     $geo = get_field('property_geo');
+    if (get_post_type()=='un_local') {
+      $text = 'Superficie construida: ' . get_field('local_area'). 'm2';
+    } elseif (get_post_type()=='un_garage') {
+      $text = get_field('property_price') . '€/mes';
+    } else {
+      $text = get_field('property_desc');
+    }
     $properties[] = array(
                   'lat' => $geo['lat'],
                   'lng' => $geo['lng'],
@@ -66,7 +73,7 @@ function ungrynerd_get_all_properties() {
                                 <div class="map-info__wrap">
                                   <h2 class="map-info__title">' . get_the_title() . '<br>' . get_field('property_location') . '</h2>
                                   <p class="map-info__address">' . $geo['address'] . '</p>
-                                  <p class="map-info__text">' . get_field('property_desc') . '</p>
+                                  <p class="map-info__text">' . $text . '</p>
                                   <a class="button map-info__link" href="' . get_permalink() . '" target="">Ver más</a>
                                 </div>
                               </artcile>')
@@ -288,17 +295,20 @@ function ungrynerd_acf_init() {
 
 add_filter('query_vars', __NAMESPACE__ . '\ungrynerd_add_query_vars');
 function ungrynerd_add_query_vars($vars) {
-  array_push($vars, 'rooms', 'area', 'types', 'features', 'price_min', 'price_max', 'map');
+  array_push($vars, 'rooms', 'area', 'types', 'features', 'price_min', 'price_max', 'area_min', 'area_max', 'vehicles', 'map');
   return $vars;
 }
 
 
 add_action('pre_get_posts', __NAMESPACE__ . '\ungrynerd_filter_query');
 function ungrynerd_filter_query($query) {
-  if ($query->is_main_query() && (is_post_type_archive('un_local') || is_post_type_archive('un_property') || is_taxonomy('un_area'))) {
+  if ($query->is_main_query() && (is_post_type_archive('un_local') || is_post_type_archive('un_garage') || is_post_type_archive('un_property') || is_taxonomy('un_area'))) {
     $filter = ungrynerd_get_filters();
-    $query->set( 'tax_query', $filter['tax_query']);
-    $query->set( 'meta_query', $filter['meta_query']);
+    $query->set('tax_query', $filter['tax_query']);
+    $query->set('meta_query', $filter['meta_query']);
+  }
+  if ($query->is_main_query() && is_taxonomy('un_area')) {
+    $query->set('post_type', array('un_property'));
   }
 }
 
@@ -308,6 +318,7 @@ function ungrynerd_get_filters() {
             'un_area' => 'un_area',
             'rooms' => 'un_room',
             'types' => 'un_type',
+            'vehicles' => 'un_vehicle',
             'features' => 'un_feature'
           );
   $tax_query = array();
@@ -333,8 +344,24 @@ function ungrynerd_get_filters() {
   }
   if ($_REQUEST['price_max']) {
     $meta_query[] = array(
-                      'key' => 'property_price_max',
+                      'key' => 'property_price_min',
                       'value' => intval($_REQUEST['price_max']),
+                      'compare' => '<=',
+                      'type' => 'NUMERIC'
+                    );
+  }
+  if ($_REQUEST['area_min']) {
+    $meta_query[] = array(
+                      'key' => 'local_area',
+                      'value' => intval($_REQUEST['area_min']),
+                      'compare' => '>=',
+                      'type' => 'NUMERIC'
+                    );
+  }
+  if ($_REQUEST['area_max']) {
+    $meta_query[] = array(
+                      'key' => 'local_area',
+                      'value' => intval($_REQUEST['area_max']),
                       'compare' => '<=',
                       'type' => 'NUMERIC'
                     );
@@ -347,5 +374,5 @@ add_action('init', __NAMESPACE__ . '\ungrynerd_add_rewrite', 10, 0);
 function ungrynerd_add_rewrite() {
   add_rewrite_rule( '^promociones/mapa/?', 'index.php?post_type=un_property&map=1','top' );
   add_rewrite_rule( '^locales/mapa/?', 'index.php?post_type=un_local&map=1','top' );
-
+  add_rewrite_rule( '^garajes/mapa/?', 'index.php?post_type=un_garage&map=1','top' );
 }

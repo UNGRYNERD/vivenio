@@ -1,4 +1,4 @@
-<form action="<?= get_post_type_archive_link('un_local') ?>" method="post">
+<form action="<?= get_post_type_archive_link('un_garage') ?>" method="post">
   <input type="hidden" name="cpt" value="<?= $wp_query->query['post_type']; ?>">
   <div class="filters__field">
     <p class="filters__field__title"><?php esc_html_e('Elige tu zona', 'ungrynerd'); ?></p>
@@ -54,36 +54,12 @@
     </div>
     <input type="hidden" value="<?= get_query_var('price_max') ?>" id="price_max" name="price_max">
   </div>
-  <div class="filters__field filters__field--price">
-    <p class="filters__field__title"><?php esc_html_e('M2', 'ungrynerd'); ?></p>
-    <div class="dropdown" data-target="#area_min">
-      <span class="dropdown__value"><?= get_query_var('area_min') ? get_query_var('area_min') : esc_html__('Min.', 'ungrynerd'); ?></span>
-      <ul class="dropdown__options">
-        <li><a href="#" data-value="10">10</a></li>
-        <li><a href="#" data-value="20">20</a></li>
-        <li><a href="#" data-value="30">30</a></li>
-        <li><a href="#" data-value="40">40</a></li>
-        <li class="input">
-          <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'ungrynerd'); ?>">
-          <a href="#" class="button button--active"><?php esc_html_e('Ok', 'ungrynerd'); ?></a>
-        </li>
-      </ul>
-    </div>
-    <input type="hidden" value="<?= get_query_var('area_min') ?>" id="area_min" name="area_min">
-    <div class="dropdown" data-target="#area_max">
-      <span class="dropdown__value"><?= get_query_var('area_max') ? get_query_var('area_max') : esc_html__('Max.', 'ungrynerd'); ?></span>
-      <ul class="dropdown__options">
-        <li><a href="#" data-value="40">40</a></li>
-        <li><a href="#" data-value="50">50</a></li>
-        <li><a href="#" data-value="60">60</a></li>
-        <li><a href="#" data-value="70">70</a></li>
-        <li class="input">
-          <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'ungrynerd'); ?>">
-          <a href="#" class="button button--active"><?php esc_html_e('Ok', 'ungrynerd'); ?></a>
-        </li>
-      </ul>
-    </div>
-    <input type="hidden" value="<?= get_query_var('area_max') ?>" id="area_max" name="area_max">
+  <p class="filters__field__title"><?php esc_html_e('Vehículo', 'ungrynerd'); ?></p>
+  <div class="filters__field filters__field--checks">
+    <?php $vehicles = get_terms('un_vehicle', array('hide_empty' => 0, 'parent' => 0)); ?>
+    <?php foreach ($vehicles as $vehicle): ?>
+      <label for="vehicles-<?= $vehicle->slug?>"><?= $vehicle->name?> <input value="<?= $vehicle->slug?>" type="checkbox" name="vehicles[]" id="vehicles-<?= $vehicle->slug?>" <?= get_query_var('vehicles') && in_array($vehicle->slug, get_query_var('vehicles')) ? 'checked' : ''; ?>><span></span></label>
+    <?php endforeach ?>
   </div>
   <input class="button button--active" type="submit" value="<?php esc_html_e('Aplicar filtros', 'ungrynerd'); ?>">
 </form>
