@@ -96,10 +96,10 @@
                 bounds.extend(marker.position);
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                  return function() {
+                  return function () {
                     infowindow.setContent(property.info);
                     infowindow.open(map, marker);
-                  }
+                  };
                 })(marker, i));
               });
               map.fitBounds(bounds);

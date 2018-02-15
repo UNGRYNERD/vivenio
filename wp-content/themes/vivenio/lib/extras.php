@@ -307,7 +307,7 @@ function ungrynerd_filter_query($query) {
     $query->set('tax_query', $filter['tax_query']);
     $query->set('meta_query', $filter['meta_query']);
   }
-  if ($query->is_main_query() && is_taxonomy('un_area')) {
+  if ($query->is_main_query() && is_tax('un_area')) {
     $query->set('post_type', array('un_property'));
   }
 }
