@@ -185,6 +185,42 @@ function ugnrynerd_apartment_post_type()  {
   register_post_type('un_apartment',$args);
 }
 
+/* GARAJES POST TYPE */
+add_action('init',  __NAMESPACE__ . '\ugnrynerd_garage_post_type');
+function ugnrynerd_garage_post_type()  {
+  $labels = array(
+    'name' => __('Garajes', 'ungrynerd'),
+    'singular_name' => __('Garaje', 'ungrynerd'),
+    'add_new' => __('Añadir Garaje', 'ungrynerd'),
+    'add_new_item' => __('Añadir Garaje', 'ungrynerd'),
+    'edit_item' => __('Editar Garaje', 'ungrynerd'),
+    'new_item' => __('Nuevo Garaje', 'ungrynerd'),
+    'view_item' => __('Ver Garajes', 'ungrynerd'),
+    'search_items' => __('Buscar Garajes', 'ungrynerd'),
+    'not_found' =>  __('No se han encontrado Garajes ', 'ungrynerd'),
+    'not_found_in_trash' => __('No hay Garajes en la papelera', 'ungrynerd'),
+    'parent_item_colon' => ''
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'capability_type' => 'post',
+    'show_in_nav_menus' => true,
+    'hierarchical' => false,
+    'exclude_from_search' => false,
+    'menu_position' => 5,
+    'rewrite' => array( 'slug' => 'garajes' ),
+    'taxonomies' => array('un_area', 'un_vehicle'),
+    'has_archive' => true,
+    'supports' => array('title', 'editor', 'thumbnail')
+  );
+  register_post_type('un_garage',$args);
+}
+
 //TAXONOMIES
 add_action( 'init', __NAMESPACE__ . '\ungrynerd_property_taxonomies', 0);
 function ungrynerd_property_taxonomies() {
@@ -206,6 +242,17 @@ function ungrynerd_property_taxonomies() {
         "label" => esc_html__( "Tipos", 'ungrynerd'),
         "singular_label" => esc_html__( "Tipo", 'ungrynerd'),
         "rewrite" => array( 'slug' => 'tipo', 'hierarchical' => true),
+        'show_in_nav_menus' => false,
+        )
+    );
+
+    register_taxonomy("un_vehicle",
+    array("un_garage"),
+    array(
+        "hierarchical" => true,
+        "label" => esc_html__( "Vehículo", 'ungrynerd'),
+        "singular_label" => esc_html__( "Vehículo", 'ungrynerd'),
+        "rewrite" => array( 'slug' => 'vehiculo', 'hierarchical' => true),
         'show_in_nav_menus' => false,
         )
     );

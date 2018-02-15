@@ -16,7 +16,7 @@
         <div class="property__info__apartment">
           <?php the_field('property_features') ?>
         </div>
-        <a href="<?= get_post_type_archive_link('un_local') ?>" class="button"><?php esc_html_e('Volver al listado', 'ungrynerd'); ?></a>
+        <a href="<?= get_post_type_archive_link('un_garage') ?>" class="button"><?php esc_html_e('Volver al listado', 'ungrynerd'); ?></a>
       </aside>
       <div class="property__data">
         <?php the_content(); ?>
