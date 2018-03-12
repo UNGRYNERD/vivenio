@@ -45,8 +45,9 @@
           $(el).on('click', function(event) {
             event.stopPropagation();
             event.preventDefault();
-            $(this).toggleClass('open');
-
+            if (event.target.tagName!=='INPUT'){
+              $(this).toggleClass('open');
+            }
           });
           $(el).on('click', '.dropdown__options a', function(event) {
             event.stopPropagation();

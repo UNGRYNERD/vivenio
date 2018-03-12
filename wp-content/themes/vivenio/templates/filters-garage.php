@@ -28,10 +28,14 @@
     <div class="dropdown" data-target="#price_min">
       <span class="dropdown__value"><?= get_query_var('price_min') ? get_query_var('price_min') : esc_html__('Min.', 'ungrynerd'); ?></span>
       <ul class="dropdown__options">
-        <li><a href="#" data-value="500">500</a></li>
-        <li><a href="#" data-value="600">600</a></li>
-        <li><a href="#" data-value="700">700</a></li>
-        <li><a href="#" data-value="800">800</a></li>
+        <li><a href="#" data-value="40">40</a></li>
+        <li><a href="#" data-value="60">60</a></li>
+        <li><a href="#" data-value="90">90</a></li>
+        <li><a href="#" data-value="120">120</a></li>
+        <li><a href="#" data-value="150">150</a></li>
+        <li><a href="#" data-value="200">200</a></li>
+        <li><a href="#" data-value="250">250</a></li>
+        <li><a href="#" data-value="300">300</a></li>
         <li class="input">
           <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'ungrynerd'); ?>">
           <a href="#" class="button button--active"><?php esc_html_e('Ok', 'ungrynerd'); ?></a>
@@ -42,10 +46,14 @@
     <div class="dropdown" data-target="#price_max">
       <span class="dropdown__value"><?= get_query_var('price_max') ? get_query_var('price_max') : esc_html__('Max.', 'ungrynerd'); ?></span>
       <ul class="dropdown__options">
-        <li><a href="#" data-value="500">500</a></li>
-        <li><a href="#" data-value="600">600</a></li>
-        <li><a href="#" data-value="700">700</a></li>
-        <li><a href="#" data-value="800">800</a></li>
+        <li><a href="#" data-value="40">40</a></li>
+        <li><a href="#" data-value="60">60</a></li>
+        <li><a href="#" data-value="90">90</a></li>
+        <li><a href="#" data-value="120">120</a></li>
+        <li><a href="#" data-value="150">150</a></li>
+        <li><a href="#" data-value="200">200</a></li>
+        <li><a href="#" data-value="250">250</a></li>
+        <li><a href="#" data-value="300">300</a></li>
         <li class="input">
           <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'ungrynerd'); ?>">
           <a href="#" class="button button--active"><?php esc_html_e('Ok', 'ungrynerd'); ?></a>

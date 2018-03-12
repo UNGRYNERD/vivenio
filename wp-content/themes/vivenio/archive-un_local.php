@@ -9,10 +9,7 @@
     <div class="prop-list__wrapper">
       <h1 class="prop-list__title"><?php esc_html_e('Locales', 'ungrynerd'); ?></h1>
       <div class="prop-list__text">
-        <p><?php _e('Creemos que una casa es mucho más que un lugar en el que vivir. <br>
-                En Vivenio nuestro compromiso es ayudarte en todo lo que necesites para que crees tu hogar con nosotros. Abajo encontrarás un listado de nuestras fincas y a la izquierda puedes utilizar los filtros de búsqueda para encontrar la casa que mejor se adapte a tí.', 'ungrynerd'); ?></p>
       </div>
-
       <div class="prop-list__options">
         <a href="<?= get_post_type_archive_link('un_local') ?>"><?= Extras\ungrynerd_svg('icon-listing') ?>Listado</a>
         <a href="<?= get_post_type_archive_link('un_local') ?>mapa/"><?= Extras\ungrynerd_svg('icon-marker') ?>Mapa</a>

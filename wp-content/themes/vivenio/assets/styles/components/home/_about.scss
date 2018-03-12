@@ -15,7 +15,7 @@
     font-weight: bold;
     line-height: 1.07;
     letter-spacing: -0.3px;
-    color: $secondary;
+    color: $white;
     margin-top: 10px;
     @media (max-width: $md) {
       font-size: 40px;
@@ -23,9 +23,8 @@
     @media (max-width: $sm) {
       flex: 0 0 100%;
     }
-    span {
-      display: block;
-      color: $white;
+    &:first-line {
+      color: $secondary;
     }
   }
   &__text {

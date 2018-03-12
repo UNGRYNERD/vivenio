@@ -65,6 +65,7 @@
       line-height: 1.07;
       letter-spacing: -1.3px;
       margin: 0px 0px 100px 0px;
+      color: $secondary;
       @media (max-width: $lg) {
         font-size: 55px;
         margin-bottom: 50px;
@@ -75,6 +76,9 @@
       }
       span {
         color: $secondary;
+      }
+      &:first-line {
+        color: $white;
       }
     }
     &__text {
