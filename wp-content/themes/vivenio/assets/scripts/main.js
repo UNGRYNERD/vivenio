@@ -33,8 +33,8 @@
           $('.header__menu').toggleClass('visible');
         });
 
-        $(window).on('scroll', function(event) {
-          if (window.scrollY>0) {
+        $(window).on('scroll', function (event) {
+          if (window.pageYOffset>0) {
             $('body').addClass('scrolled');
           } else {
             $('body').removeClass('scrolled');

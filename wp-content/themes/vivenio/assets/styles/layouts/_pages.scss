@@ -85,6 +85,7 @@
     &__wrapper {
       width: 63%;
       @extend %flex;
+      align-items: flex-start;
       @media (max-width: $md) {
         width: 100%;
       }
@@ -127,6 +128,10 @@
         display: block;
         @media (max-width: $md) {
           font-size: 20px;
+        }
+        + span {
+          font-size: 16px;
+          color: $primary;
         }
       }
     }

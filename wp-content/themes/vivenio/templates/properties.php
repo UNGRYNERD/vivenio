@@ -5,7 +5,7 @@
       <div class="prop-list__property__info">
         <?php $address = get_field('property_geo') ?>
         <h2 class="prop-list__property__title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
-        <h3 class="prop-list__property__location"><?php the_field('property_location') ?></h3>
+        <h3 class="prop-list__property__location"><a href="<?php the_permalink() ?>"><?php the_field('property_location') ?></a></h3>
         <h4 class="prop-list__property__address"><?= $address['address']; ?></h4>
         <?php if (get_post_type() == 'un_local') : ?>
           <h4 class="prop-list__property__desc">Superficie construida: <?php the_field('local_area_min') ?> m2</h4>
