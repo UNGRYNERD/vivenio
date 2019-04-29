@@ -18,10 +18,10 @@
           <?php the_field('property_features') ?>
          </div>
         <div class="property__info__features">
-          <h3 class="property__info__features__title"><?php esc_html_e('Características', 'ungrynerd'); ?></h3>
+          <h3 class="property__info__features__title"><?php esc_html_e('Características', 'vivenio'); ?></h3>
           <?php the_field('property_features', $property) ?>
         </div>
-        <a href="<?= get_permalink($property); ?>" class="button"><?php esc_html_e('Volver a la promoción', 'ungrynerd'); ?></a>
+        <a href="<?= get_permalink($property); ?>" class="button"><?php esc_html_e('Volver a la promoción', 'vivenio'); ?></a>
       </aside>
       <div class="property__data">
         <?php the_content(); ?>
@@ -38,9 +38,9 @@
       </div>
       <aside class="property__contact">
         <div class="property__contact__wrapper">
-          <h3 class="property__contact__title"><?php esc_html_e('¿Te interesa esta vivienda?', 'ungrynerd'); ?> <span><?php esc_html_e('Contacta con el asesor', 'ungrynerd'); ?></span></h3>
+          <h3 class="property__contact__title"><?php esc_html_e('¿Te interesa esta vivienda?', 'vivenio'); ?> <span><?php esc_html_e('Contacta con el asesor', 'vivenio'); ?></span></h3>
           <?= do_shortcode('[contact-form-7 id="92" title="Contacto vivendas"]') ?>
-          <h3 class="property__contact__title property__contact__title--subtitle"><?php esc_html_e('Si lo prefieres puedes también llamarnos al', 'ungrynerd'); ?> <span><?php esc_html_e('(+34) 91 128 72 97', 'ungrynerd'); ?></span></h3>
+          <h3 class="property__contact__title property__contact__title--subtitle"><?php esc_html_e('Si lo prefieres puedes también llamarnos al', 'vivenio'); ?> <span><?php esc_html_e('(+34) 91 128 72 97', 'vivenio'); ?></span></h3>
 
         </div>
       </aside>

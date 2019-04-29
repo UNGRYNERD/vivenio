@@ -10,7 +10,7 @@
         <?php if (get_post_type() == 'un_local') : ?>
           <h4 class="prop-list__property__desc">Superficie construida: <?php the_field('local_area_min') ?> m2</h4>
         <?php elseif (get_post_type() == 'un_garage') : ?>
-          <h4 class="prop-list__property__desc"><?php the_field('property_price_min') ?><?php esc_html_e('€/mes', 'ungrynerd'); ?></h4>
+          <h4 class="prop-list__property__desc"><?php the_field('property_price_min') ?><?php esc_html_e('€/mes', 'vivenio'); ?></h4>
         <?php else : ?>
           <h4 class="prop-list__property__desc"><?php the_field('property_desc') ?></h4>
         <?php endif; ?>

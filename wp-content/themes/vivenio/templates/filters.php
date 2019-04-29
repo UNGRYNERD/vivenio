@@ -1,7 +1,7 @@
 <form action="<?= get_post_type_archive_link('un_property') ?>" method="post">
   <input type="hidden" name="cpt" value="<?= $wp_query->query['post_type']; ?>">
   <div class="filters__field">
-    <p class="filters__field__title"><?php esc_html_e('Elige tu zona', 'ungrynerd'); ?></p>
+    <p class="filters__field__title"><?php esc_html_e('Elige tu zona', 'vivenio'); ?></p>
     <?php $areas = get_terms('un_area', array('hide_empty' => 0, 'parent' => 0)); ?>
     <div class="dropdown" data-target="#area">
       <?php if (get_query_var('area')) : ?>
@@ -9,7 +9,7 @@
       <?php else: ?>
         <?php $queried_area = get_term_by('slug', get_query_var('un_area') , 'un_area') ?>
       <?php endif; ?>
-      <span class="dropdown__value"><?= $queried_area ? $queried_area->name : esc_html__('Elige tu zona', 'ungrynerd'); ?></span>
+      <span class="dropdown__value"><?= $queried_area ? $queried_area->name : esc_html__('Elige tu zona', 'vivenio'); ?></span>
       <ul class="dropdown__options">
         <?php foreach ($areas as $area): ?>
           <li class="parent"><a href="#" data-value="<?= $area->slug ?>"><?= $area->name; ?></a></li>
@@ -24,9 +24,9 @@
     <input type="hidden" value="<?= $queried_area ? $queried_area->slug : ''; ?>" id="area" name="area">
   </div>
   <div class="filters__field filters__field--price">
-    <p class="filters__field__title"><?php esc_html_e('Precio', 'ungrynerd'); ?></p>
+    <p class="filters__field__title"><?php esc_html_e('Precio', 'vivenio'); ?></p>
     <div class="dropdown" data-target="#price_min">
-      <span class="dropdown__value"><?= get_query_var('price_min') ? get_query_var('price_min') : esc_html__('Min.', 'ungrynerd'); ?></span>
+      <span class="dropdown__value"><?= get_query_var('price_min') ? get_query_var('price_min') : esc_html__('Min.', 'vivenio'); ?></span>
       <ul class="dropdown__options">
         <li><a href="#" data-value="400">400</a></li>
         <li><a href="#" data-value="600">600</a></li>
@@ -38,14 +38,14 @@
         <li><a href="#" data-value="2200">2200</a></li>
         <li><a href="#" data-value="3000">3000</a></li>
         <li class="input">
-          <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'ungrynerd'); ?>">
-          <a href="#" class="button button--active"><?php esc_html_e('Ok', 'ungrynerd'); ?></a>
+          <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'vivenio'); ?>">
+          <a href="#" class="button button--active"><?php esc_html_e('Ok', 'vivenio'); ?></a>
         </li>
       </ul>
     </div>
     <input type="hidden" value="<?= get_query_var('price_min') ?>" id="price_min" name="price_min">
     <div class="dropdown" data-target="#price_max">
-      <span class="dropdown__value"><?= get_query_var('price_max') ? get_query_var('price_max') : esc_html__('Max.', 'ungrynerd'); ?></span>
+      <span class="dropdown__value"><?= get_query_var('price_max') ? get_query_var('price_max') : esc_html__('Max.', 'vivenio'); ?></span>
       <ul class="dropdown__options">
         <li><a href="#" data-value="400">400</a></li>
         <li><a href="#" data-value="600">600</a></li>
@@ -57,15 +57,15 @@
         <li><a href="#" data-value="2200">2200</a></li>
         <li><a href="#" data-value="3000">3000</a></li>
         <li class="input">
-          <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'ungrynerd'); ?>">
-          <a href="#" class="button button--active"><?php esc_html_e('Ok', 'ungrynerd'); ?></a>
+          <input type="number" min="0" placeholder="<?php esc_html_e('Otro', 'vivenio'); ?>">
+          <a href="#" class="button button--active"><?php esc_html_e('Ok', 'vivenio'); ?></a>
         </li>
       </ul>
     </div>
     <input type="hidden" value="<?= get_query_var('price_max') ?>" id="price_max" name="price_max">
   </div>
 
-  <p class="filters__field__title"><?php esc_html_e('Tipo de vivienda', 'ungrynerd'); ?></p>
+  <p class="filters__field__title"><?php esc_html_e('Tipo de vivienda', 'vivenio'); ?></p>
   <div class="filters__field filters__field--checks">
     <?php $types = get_terms('un_type', array('hide_empty' => 0, 'parent' => 0)); ?>
     <?php foreach ($types as $type): ?>
@@ -73,7 +73,7 @@
     <?php endforeach ?>
   </div>
 
-  <p class="filters__field__title"><?php esc_html_e('Habitaciones', 'ungrynerd'); ?></p>
+  <p class="filters__field__title"><?php esc_html_e('Habitaciones', 'vivenio'); ?></p>
   <div class="filters__field filters__field--checks">
     <?php $rooms = get_terms('un_room', array('hide_empty' => 0, 'parent' => 0)); ?>
     <?php foreach ($rooms as $room): ?>
@@ -81,12 +81,12 @@
     <?php endforeach ?>
   </div>
 
-  <p class="filters__field__title"><?php esc_html_e('Características', 'ungrynerd'); ?></p>
+  <p class="filters__field__title"><?php esc_html_e('Características', 'vivenio'); ?></p>
   <div class="filters__field filters__field--checks">
     <?php $features = get_terms('un_feature', array('hide_empty' => 0, 'parent' => 0)); ?>
     <?php foreach ($features as $feature): ?>
       <label for="features-<?= $feature->slug?>"><?= $feature->name?> <input value="<?= $feature->slug?>" type="checkbox" name="features[]" id="features-<?= $feature->slug?>" <?= get_query_var('features') && in_array($feature->slug, get_query_var('features')) ? 'checked' : ''; ?>><span></span></label>
     <?php endforeach ?>
   </div>
-  <input class="button button--active" type="submit" value="<?php esc_html_e('Aplicar filtros', 'ungrynerd'); ?>">
+  <input class="button button--active" type="submit" value="<?php esc_html_e('Aplicar filtros', 'vivenio'); ?>">
 </form>

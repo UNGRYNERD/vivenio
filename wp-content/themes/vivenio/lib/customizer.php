@@ -14,7 +14,7 @@ function customize_register($wp_customize) {
     'sanitize_callback' => 'esc_url_raw',
   ) );
   $wp_customize->add_control( new \WP_Customize_Image_Control( $wp_customize, 'ungrynerd_alt_logo', array(
-    'label'    => __( 'Logo alternativo', 'ungrynerd' ),
+    'label'    => __( 'Logo alternativo', 'vivenio' ),
     'section'  => 'title_tagline',
     'settings' => 'alt_logo',
   ) ) );

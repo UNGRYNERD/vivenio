@@ -107,3 +107,36 @@ input[type=text], input[type=email], textarea {
   color: $primary;
   padding: 9px 10px;
 }
+
+.select {
+  width: 100%;
+  background: $white;
+  color: $secondary;
+  position: relative;
+  height: auto;
+  border: 1px solid $secondary;
+  font-size: 14px;
+  padding: 9px 10px;
+  overflow: hidden;
+
+  select {
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    width: 105%;
+    cursor: pointer;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: block;
+    height: 34px;
+    width: 34px;
+    background: url('../images/icon-dropdown.svg') center center no-repeat $secondary;
+    background-size: 25px;
+    pointer-events: none;
+  }
+}

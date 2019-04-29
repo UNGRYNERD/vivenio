@@ -88,16 +88,16 @@ function ungrynerd_get_all_properties() {
 add_action('init',  __NAMESPACE__ . '\ugnrynerd_property_post_type');
 function ugnrynerd_property_post_type()  {
   $labels = array(
-    'name' => __('Promociones', 'ungrynerd'),
-    'singular_name' => __('Promoción', 'ungrynerd'),
-    'add_new' => __('Añadir Promoción', 'ungrynerd'),
-    'add_new_item' => __('Añadir Promoción', 'ungrynerd'),
-    'edit_item' => __('Editar Promoción', 'ungrynerd'),
-    'new_item' => __('Nuevo Promoción', 'ungrynerd'),
-    'view_item' => __('Ver Promociones', 'ungrynerd'),
-    'search_items' => __('Buscar Promociones', 'ungrynerd'),
-    'not_found' =>  __('No se han encontrado Promociones ', 'ungrynerd'),
-    'not_found_in_trash' => __('No hay Promociones en la papelera', 'ungrynerd'),
+    'name' => __('Promociones', 'vivenio'),
+    'singular_name' => __('Promoción', 'vivenio'),
+    'add_new' => __('Añadir Promoción', 'vivenio'),
+    'add_new_item' => __('Añadir Promoción', 'vivenio'),
+    'edit_item' => __('Editar Promoción', 'vivenio'),
+    'new_item' => __('Nuevo Promoción', 'vivenio'),
+    'view_item' => __('Ver Promociones', 'vivenio'),
+    'search_items' => __('Buscar Promociones', 'vivenio'),
+    'not_found' =>  __('No se han encontrado Promociones ', 'vivenio'),
+    'not_found_in_trash' => __('No hay Promociones en la papelera', 'vivenio'),
     'parent_item_colon' => ''
   );
 
@@ -124,16 +124,16 @@ function ugnrynerd_property_post_type()  {
 add_action('init',  __NAMESPACE__ . '\ugnrynerd_local_post_type');
 function ugnrynerd_local_post_type()  {
   $labels = array(
-    'name' => __('Locales', 'ungrynerd'),
-    'singular_name' => __('Local', 'ungrynerd'),
-    'add_new' => __('Añadir Local', 'ungrynerd'),
-    'add_new_item' => __('Añadir Local', 'ungrynerd'),
-    'edit_item' => __('Editar Local', 'ungrynerd'),
-    'new_item' => __('Nuevo Local', 'ungrynerd'),
-    'view_item' => __('Ver locales', 'ungrynerd'),
-    'search_items' => __('Buscar locales', 'ungrynerd'),
-    'not_found' =>  __('No se han encontrado locales ', 'ungrynerd'),
-    'not_found_in_trash' => __('No hay locales en la papelera', 'ungrynerd'),
+    'name' => __('Locales', 'vivenio'),
+    'singular_name' => __('Local', 'vivenio'),
+    'add_new' => __('Añadir Local', 'vivenio'),
+    'add_new_item' => __('Añadir Local', 'vivenio'),
+    'edit_item' => __('Editar Local', 'vivenio'),
+    'new_item' => __('Nuevo Local', 'vivenio'),
+    'view_item' => __('Ver locales', 'vivenio'),
+    'search_items' => __('Buscar locales', 'vivenio'),
+    'not_found' =>  __('No se han encontrado locales ', 'vivenio'),
+    'not_found_in_trash' => __('No hay locales en la papelera', 'vivenio'),
     'parent_item_colon' => ''
   );
 
@@ -160,16 +160,16 @@ function ugnrynerd_local_post_type()  {
 add_action('init',  __NAMESPACE__ . '\ugnrynerd_apartment_post_type');
 function ugnrynerd_apartment_post_type()  {
   $labels = array(
-    'name' => __('Viviendas', 'ungrynerd'),
-    'singular_name' => __('Vivienda', 'ungrynerd'),
-    'add_new' => __('Añadir Vivienda', 'ungrynerd'),
-    'add_new_item' => __('Añadir Vivienda', 'ungrynerd'),
-    'edit_item' => __('Editar Vivienda', 'ungrynerd'),
-    'new_item' => __('Nuevo Vivienda', 'ungrynerd'),
-    'view_item' => __('Ver Viviendas', 'ungrynerd'),
-    'search_items' => __('Buscar Viviendas', 'ungrynerd'),
-    'not_found' =>  __('No se han encontrado Viviendas ', 'ungrynerd'),
-    'not_found_in_trash' => __('No hay Viviendas en la papelera', 'ungrynerd'),
+    'name' => __('Viviendas', 'vivenio'),
+    'singular_name' => __('Vivienda', 'vivenio'),
+    'add_new' => __('Añadir Vivienda', 'vivenio'),
+    'add_new_item' => __('Añadir Vivienda', 'vivenio'),
+    'edit_item' => __('Editar Vivienda', 'vivenio'),
+    'new_item' => __('Nuevo Vivienda', 'vivenio'),
+    'view_item' => __('Ver Viviendas', 'vivenio'),
+    'search_items' => __('Buscar Viviendas', 'vivenio'),
+    'not_found' =>  __('No se han encontrado Viviendas ', 'vivenio'),
+    'not_found_in_trash' => __('No hay Viviendas en la papelera', 'vivenio'),
     'parent_item_colon' => ''
   );
 
@@ -196,16 +196,16 @@ function ugnrynerd_apartment_post_type()  {
 add_action('init',  __NAMESPACE__ . '\ugnrynerd_garage_post_type');
 function ugnrynerd_garage_post_type()  {
   $labels = array(
-    'name' => __('Garajes', 'ungrynerd'),
-    'singular_name' => __('Garaje', 'ungrynerd'),
-    'add_new' => __('Añadir Garaje', 'ungrynerd'),
-    'add_new_item' => __('Añadir Garaje', 'ungrynerd'),
-    'edit_item' => __('Editar Garaje', 'ungrynerd'),
-    'new_item' => __('Nuevo Garaje', 'ungrynerd'),
-    'view_item' => __('Ver Garajes', 'ungrynerd'),
-    'search_items' => __('Buscar Garajes', 'ungrynerd'),
-    'not_found' =>  __('No se han encontrado Garajes ', 'ungrynerd'),
-    'not_found_in_trash' => __('No hay Garajes en la papelera', 'ungrynerd'),
+    'name' => __('Garajes', 'vivenio'),
+    'singular_name' => __('Garaje', 'vivenio'),
+    'add_new' => __('Añadir Garaje', 'vivenio'),
+    'add_new_item' => __('Añadir Garaje', 'vivenio'),
+    'edit_item' => __('Editar Garaje', 'vivenio'),
+    'new_item' => __('Nuevo Garaje', 'vivenio'),
+    'view_item' => __('Ver Garajes', 'vivenio'),
+    'search_items' => __('Buscar Garajes', 'vivenio'),
+    'not_found' =>  __('No se han encontrado Garajes ', 'vivenio'),
+    'not_found_in_trash' => __('No hay Garajes en la papelera', 'vivenio'),
     'parent_item_colon' => ''
   );
 
@@ -235,8 +235,8 @@ function ungrynerd_property_taxonomies() {
     array("un_property"),
     array(
         "hierarchical" => true,
-        "label" => esc_html__( "Zonas", 'ungrynerd'),
-        "singular_label" => esc_html__( "Zona", 'ungrynerd'),
+        "label" => esc_html__( "Zonas", 'vivenio'),
+        "singular_label" => esc_html__( "Zona", 'vivenio'),
         "rewrite" => array( 'slug' => 'zona', 'hierarchical' => true),
         'show_in_nav_menus' => false,
         )
@@ -246,8 +246,8 @@ function ungrynerd_property_taxonomies() {
     array("un_property"),
     array(
         "hierarchical" => true,
-        "label" => esc_html__( "Tipos", 'ungrynerd'),
-        "singular_label" => esc_html__( "Tipo", 'ungrynerd'),
+        "label" => esc_html__( "Tipos", 'vivenio'),
+        "singular_label" => esc_html__( "Tipo", 'vivenio'),
         "rewrite" => array( 'slug' => 'tipo', 'hierarchical' => true),
         'show_in_nav_menus' => false,
         )
@@ -257,8 +257,8 @@ function ungrynerd_property_taxonomies() {
     array("un_garage"),
     array(
         "hierarchical" => true,
-        "label" => esc_html__( "Vehículo", 'ungrynerd'),
-        "singular_label" => esc_html__( "Vehículo", 'ungrynerd'),
+        "label" => esc_html__( "Vehículo", 'vivenio'),
+        "singular_label" => esc_html__( "Vehículo", 'vivenio'),
         "rewrite" => array( 'slug' => 'vehiculo', 'hierarchical' => true),
         'show_in_nav_menus' => false,
         )
@@ -268,8 +268,8 @@ function ungrynerd_property_taxonomies() {
     array("un_property"),
     array(
         "hierarchical" => true,
-        "label" => esc_html__( "Habitaciones", 'ungrynerd'),
-        "singular_label" => esc_html__( "Habitación", 'ungrynerd'),
+        "label" => esc_html__( "Habitaciones", 'vivenio'),
+        "singular_label" => esc_html__( "Habitación", 'vivenio'),
         "rewrite" => array( 'slug' => 'habitaciones', 'hierarchical' => false),
         'show_in_nav_menus' => false,
         )
@@ -279,8 +279,8 @@ function ungrynerd_property_taxonomies() {
     array("un_property"),
     array(
         "hierarchical" => true,
-        "label" => esc_html__( "Características", 'ungrynerd'),
-        "singular_label" => esc_html__( "Característica", 'ungrynerd'),
+        "label" => esc_html__( "Características", 'vivenio'),
+        "singular_label" => esc_html__( "Característica", 'vivenio'),
         "rewrite" => array( 'slug' => 'habitaciones', 'hierarchical' => false),
         'show_in_nav_menus' => false,
         )
