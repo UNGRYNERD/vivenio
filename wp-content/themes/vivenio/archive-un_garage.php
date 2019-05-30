@@ -1,7 +1,7 @@
 <?php use Roots\Sage\Extras; ?>
 <section class="properties">
   <aside class="filters">
-    <a href="#" class="filters__toggle">Filtros</a>
+    <a href="#" class="filters__toggle"><?php esc_html_e('Filtros', 'vivenio'); ?></a>
     <h2 class="filters__title"><?php esc_html_e('Filtros', 'vivenio'); ?></h2>
     <?php get_template_part('templates/filters', 'garage') ?>
   </aside>
@@ -11,8 +11,8 @@
       <div class="prop-list__text">
       </div>
       <div class="prop-list__options">
-        <a href="<?= get_post_type_archive_link('un_garage') ?>"><?= Extras\ungrynerd_svg('icon-listing') ?>Listado</a>
-        <a href="<?= get_post_type_archive_link('un_garage') ?>mapa/"><?= Extras\ungrynerd_svg('icon-marker') ?>Mapa</a>
+        <a href="<?= get_post_type_archive_link('un_garage') ?>"><?= Extras\ungrynerd_svg('icon-listing') ?><?php esc_html_e('Listado', 'vivenio'); ?></a>
+        <a href="<?= get_post_type_archive_link('un_garage') ?>mapa/"><?= Extras\ungrynerd_svg('icon-marker') ?><?php esc_html_e('Mapa', 'vivenio'); ?></a>
       </div>
     </div>
     <?php if (have_posts()): ?>

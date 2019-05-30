@@ -13,7 +13,7 @@
       <ul class="dropdown__options">
         <?php foreach ($areas as $area): ?>
           <li class="parent"><a href="#" data-value="<?= $area->slug ?>"><?= $area->name; ?></a></li>
-          <li><a href="#" data-value="<?= $area->slug ?>">Todo <?= $area->name; ?></a></li>
+          <li><a href="#" data-value="<?= $area->slug ?>"><?php esc_html_e('Todo', 'vivenio'); ?> <?= $area->name; ?></a></li>
           <?php $child_areas = get_terms('un_area', array('hide_empty' => 0, 'parent' => $area->term_id)); ?>
           <?php foreach ($child_areas as $child_area): ?>
             <li><a href="#" data-value="<?= $child_area->slug ?>"><?= $child_area->name; ?></a></li>

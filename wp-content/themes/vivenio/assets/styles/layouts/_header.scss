@@ -82,6 +82,8 @@
     margin: 0px;
     padding: 0px;
     transition: right 0.3s linear;
+    position: relative;
+
     @media (max-width: $md) {
       right: -100%;
       background-color: $primary;
@@ -127,6 +129,15 @@
       &.current-menu-item {
         a {
           color: $secondary;
+        }
+      }
+      &.wpml-ls-item {
+        @media (min-width: $md) {
+          font-weight: normal;
+          position: absolute;
+          right: 0;
+          top: -50px;
+          font-size: 12px;
         }
       }
     }
