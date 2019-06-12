@@ -8,7 +8,7 @@
       <h1 class="property__title"><?php the_title() ?></h1>
 
       <aside class="property__info">
-        <p class="property__info__price">desde <?php the_field('property_price') ?>€/mes</p>
+        <p class="property__info__price"><?php esc_html_e('desde', 'vivenio'); ?> <?php the_field('property_price') ?><?php esc_html_e('€/mes', 'vivenio'); ?></p>
         <h3 class="property__info__location">
           <strong><?= get_the_title($property); ?></strong> <br>
           <?php the_field('property_location', $property) ?> <br>
