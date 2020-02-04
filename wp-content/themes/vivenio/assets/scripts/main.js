@@ -23,6 +23,27 @@
           event.preventDefault();
           $('.popup').addClass('visible');
         });
+
+        $(".js-btn-forms").on("click", function(event) {
+          event.preventDefault();
+          $(".js-popup-pretitle").text(
+            $(this)
+              .closest(".contacts__contact")
+              .find(".contacts__title").text()
+          );
+          $(".js-popup-phone").text(
+            $(this)
+              .closest(".contacts__contact")
+              .find(".contacts__phone").text()
+          );
+          $(".js-popup-email").text(
+            $(this)
+              .closest(".contacts__contact")
+              .find(".contacts__email").text()
+          );
+          $(".popup").addClass("visible");
+        });
+
         $('.popup__close').on('click', function(event) {
           event.preventDefault();
           $('.popup').removeClass('visible');
