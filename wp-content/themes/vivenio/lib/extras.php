@@ -330,7 +330,8 @@ function ungrynerd_get_filters() {
       $tax_query[] = array(
         'taxonomy' => $tax,
         'field' => 'slug',
-        'terms' => $terms
+        'terms' => $terms,
+        'operator' => 'AND'
       );
     }
   }

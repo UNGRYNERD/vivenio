@@ -19,8 +19,8 @@
 <div class="popup">
   <div class="popup__content">
     <h3 class="popup__pretitle js-popup-pretitle">Nombre de area</h3>
-    <h2 class="prefooter__title"><?php esc_html_e('Puedes llamarnos al', 'ungrynerd'); ?> <span class="js-popup-phone popup__phone">666666666</span> <br><?php esc_html_e('o escribirnos un mensaje en este formulario', 'ungrynerd'); ?></h2>
+    <h2 class="prefooter__title"><?php esc_html_e('Puedes llamarnos al', 'vivenio'); ?> <span class="js-popup-phone popup__phone">666666666</span> <br><?php esc_html_e('o escribirnos un mensaje en este formulario', 'vivenio'); ?></h2>
     <?= do_shortcode(get_field('form', 'option')); ?>
-    <a href="#" class="popup__close"><?php esc_html_e('Cerrar', 'ungrynerd'); ?></a>
+    <a href="#" class="popup__close"><?php esc_html_e('Cerrar', 'vivenio'); ?></a>
   </div>
 </div>

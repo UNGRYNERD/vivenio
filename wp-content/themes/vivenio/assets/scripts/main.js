@@ -36,7 +36,7 @@
               .closest(".contacts__contact")
               .find(".contacts__phone").text()
           );
-          $(".js-popup-email").text(
+          $(".js-popup-email").val(
             $(this)
               .closest(".contacts__contact")
               .find(".contacts__email").text()

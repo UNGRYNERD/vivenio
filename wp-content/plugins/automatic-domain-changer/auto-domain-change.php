@@ -4,7 +4,7 @@ Plugin Name: Automatic Domain Changer
 Plugin URI: http://www.nuagelab.com/wordpress-plugins/auto-domain-change
 Description: Automatically changes the domain of a WordPress blog
 Author: NuageLab <wordpress-plugins@nuagelab.com>
-Version: 2.0.1
+Version: 2.0.2
 License: GPLv2 or later
 Author URI: http://www.nuagelab.com/wordpress-plugins
 */
@@ -168,7 +168,7 @@ class auto_domain_change{
 						if (!$_POST['accept-terms']) {
 							$error_terms = true;
 						} else {
-							return $this->do_change($_POST['old-domain'], $_POST['new-domain']);
+							return $this->do_change($_POST['old-domain'], $_POST['new-domain'], $_POST['force-protocol'] ? $_POST['force-protocol'] : null);
 						}
 						break;
 					default:
@@ -190,16 +190,45 @@ class auto_domain_change{
 		wp_nonce_field($action,'nonce');
 		echo '<input type="hidden" name="action" value="'.$action.'" />';
 
+        if (array_key_exists('force-protocol', $_POST)) {
+            $force_protocol = $_POST['force-protocol'];
+        } else if (array_key_exists('HTTPS', $_SERVER)) {
+            $force_protocol = 'https';
+        } else if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+            $force_protocol = 'https';
+        } else {
+            $force_protocol = 'http';
+        }
+
+        echo '<style>';
+        echo '.adc-widefat { height:28px; padding:2px; position:relative; top:2px; width:250px; max-width:100%;}';
+        echo '.adc-select { text-align:right;}';
+        echo '</style>';
+
 		echo '<table class="form-table">';
 		echo '<tbody>';
 		echo '<tr valign="top">';
 		echo '<th scope="row"><label for="old-domain">'.__('Change domain from: ','auto-domain-change').'</label></th>';
-		echo '<td>http://<input class="regular-text" type="text" name="old-domain" id="old-domain" value="'.esc_html(get_option('auto_domain_change-domain')).'" /></td>';
+		echo '<td>http://<input class="adc-widefat" class="regular-text" type="text" name="old-domain" id="old-domain" value="'.esc_html(get_option('auto_domain_change-domain')).'" /></td>';
 		echo '</tr>';
 
 		echo '<tr valign="top">';
 		echo '<th scope="row"><label for="new-domain">'.__('Change domain to: ','auto-domain-change').'</label></th>';
-		echo '<td>http://<input class="regular-text" type="text" name="new-domain" id="new-domain" value="'.esc_html($_SERVER['HTTP_HOST']).'" /></td>';
+		echo '<td>';
+        echo '<select name="force-protocol" id="force-protocol" class="adc-select">';
+        foreach (array(
+                     'https'=>__('https://', 'auto-domain-change'),
+                     'http'=>__('http://', 'auto-domain-change'),
+                     ''=>__('(same)', 'auto-domain-change'),
+                 ) as $protocol=>$name) {
+            printf('<option value="%1$s"%3$s>%2$s</option>',
+                $protocol,
+                $name,
+                ($force_protocol == $protocol ? ' selected' : '')
+            );
+        }
+        echo '</select>';
+        echo '<input class="adc-widefat" class="regular-text" type="text" name="new-domain" id="new-domain" value="'.esc_html($_SERVER['HTTP_HOST']).'" /></td>';
 		echo '</tr>';
 
 		echo '<tr valign="top">';
@@ -259,7 +288,7 @@ EOD;
 	 * @author	Tommy Lacroix <tlacroix@nuagelab.com>
 	 * @access	private
 	 */
-	private function do_change($old, $new)
+	private function do_change($old, $new, $forceProtocol=null)
 	{
 		global $wpdb;
 
@@ -324,7 +353,7 @@ EOD;
 						$ov = $v;
 
 						// Process value
-						$v = $this->processValue( $v, $old, $new );
+						$v = $this->processValue( $v, $old, $new, $forceProtocol );
 
 						// If value changed, replace it
 						if ( $ov != $v ) {
@@ -350,7 +379,7 @@ EOD;
 	} // do_change()
 	
 	
-	private function processValue($v, $old, $new) 
+	private function processValue($v, $old, $new, $forceProtocol)
 	{
 		$sfalse = serialize(false);
 		$jfalse = json_encode(false);
@@ -373,10 +402,10 @@ EOD;
 
 		if (($serialized) && (is_string($v))) {
 			// Reprocess in case of double serialize done by sketchy plugins
-			$v = $this->processValue($v, $old, $new);
+			$v = $this->processValue($v, $old, $new, $forceProtocol);
 		} else {
 			// Replace
-			$this->replace($v, $old, $new);
+			$this->replace($v, $old, $new, $forceProtocol);
 		}
 
 		// Reserialize if needed
@@ -538,7 +567,7 @@ EOD;
 	 * @return	mixed				Modified data
 	 * @access	private
 	 */
-	private function replace(&$v, $old, $new)
+	private function replace(&$v, $old, $new, $forceProtocol=null)
 	{
 		$protocols = array('http');
 		if (get_option('auto_domain_change-https')) $protocols[] = 'https';
@@ -552,12 +581,13 @@ EOD;
 
 		if ((is_array($v)) || (is_object($v))) {
 			foreach ($v as &$vv) {
-				$this->replace($vv, $old, $new);
+				$this->replace($vv, $old, $new, $forceProtocol);
 			}
 		} else if (is_string($v)) {
 			foreach ($protocols as $protocol) {
 				foreach ($domains as $o=>$n) {
-					$v = preg_replace(','.$protocol.'://'.preg_quote($o,',').',i',$protocol.'://'.$n, $v);
+                    $toProtocol = $forceProtocol ? $forceProtocol : $protocol;
+					$v = preg_replace(','.$protocol.'://'.preg_quote($o,',').',i',$toProtocol.'://'.$n, $v);
 				}
 			}
 		}
