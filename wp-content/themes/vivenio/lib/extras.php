@@ -302,12 +302,12 @@ function ungrynerd_add_query_vars($vars) {
 
 add_action('pre_get_posts', __NAMESPACE__ . '\ungrynerd_filter_query');
 function ungrynerd_filter_query($query) {
-  if ($query->is_main_query() && (is_post_type_archive('un_local') || is_post_type_archive('un_garage') || is_post_type_archive('un_property') || is_taxonomy('un_area'))) {
+  if ($query->is_main_query() && (is_post_type_archive('un_local') || is_post_type_archive('un_garage') || is_post_type_archive('un_property') || $query->is_tax('un_area'))) {
     $filter = ungrynerd_get_filters();
     $query->set('tax_query', $filter['tax_query']);
     $query->set('meta_query', $filter['meta_query']);
   }
-  if ($query->is_main_query() && is_tax('un_area')) {
+  if ($query->is_main_query() && $query->is_tax('un_area')) {
     $query->set('post_type', array('un_property'));
   }
 }
@@ -330,8 +330,8 @@ function ungrynerd_get_filters() {
       $tax_query[] = array(
         'taxonomy' => $tax,
         'field' => 'slug',
-        'terms' => $terms,
-        'operator' => 'AND'
+        'terms' => is_array($terms) ? $terms : array($terms),
+        'operator' => is_array($terms) ? 'AND' : 'IN'
       );
     }
   }
