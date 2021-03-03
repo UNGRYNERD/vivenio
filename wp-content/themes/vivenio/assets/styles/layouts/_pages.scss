@@ -116,6 +116,23 @@
         display: none;
       }
     }
+
+    .wp-block-table {
+      margin: 0;
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+
+        td {
+          border: 1px solid;
+          vertical-align: top;
+          padding: 10px;
+          font-size: 16px;
+          font-weight: normal;
+        }
+      }
+    }
   }
   &__image {
     max-height: 500px;
